@@ -6,19 +6,20 @@
 <title>TutoTips</title>
 <style>
 body{margin:0;font-family:Arial;background:#f2f2f2}
-.header{background:#fff;padding:15px 0 10px 0;text-align:center;position:sticky;top:0;z-index:10}
+.header{background:#fff;padding:15px 0 10px 0;text-align:center;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 .logo{font-size:28px;font-weight:bold;color:#e53935}
 .buscador{width:85%;max-width:500px;padding:12px 18px;border:2px solid #e53935;border-radius:25px;margin:12px auto;display:block;outline:none}
-.categorias{width:100%;display:flex;gap:8px;overflow-x:auto;padding:10px 15px;box-sizing:border-box;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+.categorias{width:100%;display:flex;gap:8px;overflow-x:auto;padding:10px 15px;box-sizing:border-box}
 .categorias::-webkit-scrollbar{display:none}
 .cat{flex:0 0 auto;padding:9px 16px;border:2px solid #e53935;background:white;border-radius:20px;font-weight:bold;font-size:14px}
 .cat.activa{background:#e53935;color:white}
-.grid{padding:12px;display:grid;gap:12px}
-.card{background:white;border-radius:18px;overflow:hidden}
-.card img{width:100%;height:180px;object-fit:cover}
+.grid{padding:12px;display:grid;gap:14px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.card img{width:100%;height:200px;object-fit:cover}
 .card-content{padding:12px}
 .btn{background:#e53935;color:white;border:0;padding:12px;border-radius:15px;width:100%;font-weight:bold;font-size:15px}
-#modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;z-index:99;padding:15px;box-sizing:border-box}
+#modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;z-index:99;padding:15px;box-sizing:border-box;overflow:auto}
 #modalBox{background:white;border-radius:18px;padding:20px;max-width:600px;margin:30px auto}
 </style>
 </head>
@@ -32,14 +33,17 @@ body{margin:0;font-family:Arial;background:#f2f2f2}
 <button class="cat" data-filtro="tecnologia">💻 Tecnología</button>
 <button class="cat" data-filtro="comida">🍔 Comida</button>
 <button class="cat" data-filtro="juegos">🎮 Juegos</button>
-<button class="cat" data-filtro="manualidades">✂️ Manualidades</button>
 </div>
 </div>
 
 <div class="grid">
+<div class="card" data-cat="tecnologia"><img src="programar.jpg"><div class="card-content"><h3>Aprender a programar en 5 minutos</h3><p>Fácil y rápido desde cero.</p><button class="btn" data-open="programar">Ver tutorial</button></div></div>
+
+<div class="card" data-cat="comida"><img src="pizza.jpg"><div class="card-content"><h3>Pizza casera super quesosa</h3><p>Con mucho queso que se estira.</p><button class="btn" data-open="comida">Ver tutorial</button></div></div>
+
+<div class="card" data-cat="juegos"><img src="free.jpg"><div class="card-content"><h3>Trucos Free Fire</h3><p>Sube a Heroico rápido.</p><button class="btn" data-open="juegos">Ver tutorial</button></div></div>
+
 <div class="card" data-cat="tecnologia"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600"><div class="card-content"><h3>Como hacer tu propia página web</h3><p>Sin pagar nada.</p><button class="btn" data-open="web">Ver tutorial</button></div></div>
-<div class="card" data-cat="comida"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600"><div class="card-content"><h3>Pizza en 10 min</h3><p>Rápida y rica.</p><button class="btn" data-open="comida">Ver tutorial</button></div></div>
-<div class="card" data-cat="juegos"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600"><div class="card-content"><h3>Trucos Free Fire</h3><p>Sube a Heroico.</p><button class="btn" data-open="juegos">Ver tutorial</button></div></div>
 </div>
 
 <div id="modal"><div id="modalBox"></div></div>
@@ -52,31 +56,9 @@ cats.forEach(b=>{
   cats.forEach(x=>x.classList.remove('activa')); b.classList.add('activa');
   let f=b.dataset.filtro;
   cards.forEach(c=>{ c.style.display=(f=='todos'||c.dataset.cat==f)?'block':'none'; });
-  // para que puedas deslizar toda la barra hasta el final
-  b.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
  });
 });
-
 const modal=document.getElementById('modal');
 const modalBox=document.getElementById('modalBox');
 const textos={
- web:'<h2>Cómo hacer tu página web</h2><p><b>PC:</b> github.com > New repo > emojicxd-rgb.github.io > upload index.html > Settings > Pages > Deploy.</p><p><b>Celular:</b> App GitHub > + > New repository > mismo nombre > Add file > pega el código.</p>',
- comida:'<h2>Pizza en 10 min</h2><p>Pan pita, salsa, queso, 5 min en sartén tapado.</p>',
- juegos:'<h2>Free Fire</h2><p>Sensibilidad 95, jugar a 4 dedos, personaje Kelly.</p>'
-};
-document.querySelectorAll('[data-open]').forEach(btn=>{
- btn.addEventListener('click',()=>{
-  let t=btn.dataset.open;
-  modalBox.innerHTML=textos[t]+'<br><br><button class="btn" id="cerrarBtn">Cerrar</button>';
-  modal.style.display='block';
-  document.getElementById('cerrarBtn').onclick=()=>modal.style.display='none';
- });
-});
-modal.addEventListener('click',e=>{if(e.target==modal)modal.style.display='none';});
-document.getElementById('buscador').addEventListener('input',e=>{
- let v=e.target.value.toLowerCase();
- cards.forEach(c=>c.style.display=c.innerText.toLowerCase().includes(v)?'block':'none');
-});
-</script>
-</body>
-</html>
+ programar:'<h2>Programar en 5 min</h2><p>1.
