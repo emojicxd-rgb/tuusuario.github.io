@@ -1,100 +1,56 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TutoTips</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5}
-.header{background:white;padding:20px;text-align:center;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,.1);z-index:10}
-.logo{font-size:32px;font-weight:bold;color:#e53935}
-.buscador{width:90%;max-width:500px;padding:15px 20px;border:2px solid #e53935;border-radius:30px;margin:20px auto;display:block;font-size:16px;outline:none}
-.categorias{display:flex;gap:10px;overflow-x:auto;padding:10px 15px;justify-content:center}
-.cat{padding:10px 20px;border-radius:20px;border:2px solid #e53935;background:white;font-weight:bold;cursor:pointer;white-space:nowrap}
-.cat.activa{background:#e53935;color:white}
-.grid{padding:15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.card{background:white;border-radius:20px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.1)}
-.card img{width:100%;height:200px;object-fit:cover}
-.card-content{padding:15px}
-.btn{background:#e53935;color:white;border:none;padding:12px 25px;border-radius:20px;font-weight:bold;cursor:pointer;margin-top:10px}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:100;overflow:auto}
-.modal-content{background:white;margin:5% auto;padding:25px;border-radius:20px;width:90%;max-width:650px}
-.cerrar{float:right;font-size:30px;cursor:pointer}
-.tabs{display:flex;gap:10px;margin:15px 0}
-.tab{flex:1;padding:12px;border-radius:12px;border:2px solid #e53935;background:white;font-weight:bold;cursor:pointer}
-.tab.activo{background:#e53935;color:white}
-.contenido{display:none;background:#f9f9f9;padding:15px;border-radius:12px;margin-top:10px}
-.contenido.activo{display:block}
+body{font-family:Arial;margin:0;background:#eee}
+.header{background:#fff;padding:15px;text-align:center;position:sticky;top:0;z-index:9}
+.cat{padding:8px 15px;border:2px solid red;border-radius:20px;background:white;margin:3px;font-weight:bold}
+.cat.activa{background:red;color:white}
+.grid{padding:15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+.card{background:white;border-radius:15px;overflow:hidden}
+.card img{width:100%;height:180px;object-fit:cover}
+.card div{padding:12px}
+.btn{background:red;color:white;border:0;padding:10px 20px;border-radius:15px;width:100%;font-weight:bold}
+#modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:99;padding:20px;box-sizing:border-box}
+#modalBox{background:white;padding:20px;border-radius:15px;max-width:600px;margin:auto}
 </style>
 </head>
 <body>
 <div class="header">
-<div class="logo">💡 TutoTips</div>
-<p>Tutoriales que sí sirven</p>
-<input type="text" id="buscador" class="buscador" placeholder="Buscar tutorial...">
-<div class="categorias">
-<button class="cat activa" onclick="filtrarCat('todos',this)">Todos</button>
-<button class="cat" onclick="filtrarCat('comida',this)">🍔 Comida</button>
-<button class="cat" onclick="filtrarCat('juegos',this)">🎮 Juegos</button>
-<button class="cat" onclick="filtrarCat('tecnologia',this)">💻 Tecnología</button>
-<button class="cat" onclick="filtrarCat('manualidades',this)">✂️ Manualidades</button>
+<h1>💡 TutoTips</h1>
+<div>
+<button class="cat activa" onclick="filtra('todos',this)">Todos</button>
+<button class="cat" onclick="filtra('comida',this)">Comida</button>
+<button class="cat" onclick="filtra('juegos',this)">Juegos</button>
+<button class="cat" onclick="filtra('tecnologia',this)">Tecnologia</button>
 </div>
 </div>
 
-<div class="grid" id="grid">
-
-<div class="card tutorial" data-cat="tecnologia">
-<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600">
-<div class="card-content">
-<h3>Como hacer tu propia página web</h3>
-<p>Te enseño paso a paso sin pagar nada.</p>
-<button class="btn" onclick="abrir('web')">Ver tutorial</button>
-</div>
+<div class="grid">
+<div class="card" data-cat="tecnologia"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600"><div><h3>Pagina Web</h3><button class="btn" onclick="abrir('web')">VER TUTORIAL</button></div></div>
+<div class="card" data-cat="comida"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600"><div><h3>Pizza Rapida</h3><button class="btn" onclick="abrir('comida')">VER TUTORIAL</button></div></div>
+<div class="card" data-cat="juegos"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600"><div><h3>Trucos Free</h3><button class="btn" onclick="abrir('juegos')">VER TUTORIAL</button></div></div>
 </div>
 
-<div class="card tutorial" data-cat="comida">
-<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600">
-<div class="card-content">
-<h3>Como hacer pizza en 10 min</h3>
-<p>Sin horno y queda chida.</p>
-<button class="btn" onclick="abrir('pizza')">Ver tutorial</button>
-</div>
-</div>
-
-<div class="card tutorial" data-cat="juegos">
-<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600">
-<div class="card-content">
-<h3>Trucos para Free Fire</h3>
-<p>Sube a Heroico rápido.</p>
-<button class="btn" onclick="abrir('juegos')">Ver tutorial</button>
-</div>
-</div>
-
-<div class="card tutorial" data-cat="manualidades">
-<img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600">
-<div class="card-content">
-<h3>Manualidad con cartón</h3>
-<p>Para decorar tu cuarto.</p>
-<button class="btn" onclick="abrir('manual')">Ver tutorial</button>
-</div>
-</div>
-
-</div>
-
-<div id="modal" class="modal">
-<div class="modal-content">
-<span class="cerrar" onclick="cerrar()">&times;</span>
-<div id="contenidoModal"></div>
-</div>
-</div>
+<div id="modal" onclick="if(event.target.id=='modal')cerrar()"><div id="modalBox"></div></div>
 
 <script>
-const buscador = document.getElementById('buscador');
-const cards = document.querySelectorAll('.tutorial');
-buscador.addEventListener('input', () => {
-  let t = buscador.value.toLowerCase();
-  cards.forEach(c => { c.style.display = c.innerText.toLowerCase().includes(t) ? 'block' : 'none'; });
-});
-
-function filtrarCat(cat, btn){
-  document.querySelectorAll('.cat').forEach(b
+function filtra(cat,btn){
+document.querySelectorAll('.cat').forEach(b=>b.classList.remove('activa'));btn.classList.add('activa');
+document.querySelectorAll('.card').forEach(c=>{c.style.display=(cat=='todos'||c.dataset.cat==cat)?'block':'none'})
+}
+function abrir(t){
+let html='';
+if(t=='web') html='<h2>Como hacer pagina web</h2><p><b>En PC:</b> GitHub > Nuevo repo > pon emojicxd-rgb.github.io > sube tu index.html</p><p><b>En Celular:</b> Descarga app GitHub y haz lo mismo, pero usa Chrome en modo computadora.</p>';
+if(t=='comida') html='<h2>Pizza en 10 min</h2><p>Pan pita, salsa, queso, al sarten 5 min.</p>';
+if(t=='juegos') html='<h2>Trucos Free Fire</h2><p>Sube sensibilidad a 95 y juega a 4 dedos.</p>';
+document.getElementById('modalBox').innerHTML=html+'<br><button class="btn" onclick="cerrar()">Cerrar</button>';
+document.getElementById('modal').style.display='block';
+}
+function cerrar(){document.getElementById('modal').style.display='none';}
+</script>
+</body>
+</html>
