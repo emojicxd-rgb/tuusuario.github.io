@@ -6,7 +6,7 @@
 <title>TutoTips</title>
 <style>
 body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5}
-.header{background:white;padding:20px;text-align:center;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.header{background:white;padding:20px;text-align:center;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,.1);z-index:10}
 .logo{font-size:32px;font-weight:bold;color:#e53935}
 .buscador{width:90%;max-width:500px;padding:15px 20px;border:2px solid #e53935;border-radius:30px;margin:20px auto;display:block;font-size:16px;outline:none}
 .grid{padding:15px;display:grid;gap:20px}
@@ -14,9 +14,14 @@ body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5}
 .card img{width:100%;height:200px;object-fit:cover}
 .card-content{padding:15px}
 .btn{background:#e53935;color:white;border:none;padding:12px 25px;border-radius:20px;font-weight:bold;cursor:pointer;margin-top:10px}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:100}
-.modal-content{background:white;margin:20% auto;padding:25px;border-radius:20px;width:85%;max-width:600px}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:100;overflow:auto}
+.modal-content{background:white;margin:10% auto;padding:25px;border-radius:20px;width:85%;max-width:650px}
 .cerrar{float:right;font-size:30px;cursor:pointer}
+.tabs{display:flex;gap:10px;margin:15px 0}
+.tab{flex:1;padding:12px;border-radius:12px;border:2px solid #e53935;background:white;font-weight:bold;cursor:pointer}
+.tab.activo{background:#e53935;color:white}
+.contenido{display:none;background:#f9f9f9;padding:15px;border-radius:12px;margin-top:10px}
+.contenido.activo{display:block}
 </style>
 </head>
 <body>
@@ -30,8 +35,8 @@ body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5}
 <div class="card tutorial">
 <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600">
 <div class="card-content">
-<h3>Como hacer tu página web en 5 min</h3>
-<p>Te enseño a hacer lo que estás haciendo ahora mismo, sin pagar nada.</p>
+<h3>Como hacer tu propia página web</h3>
+<p>Te enseño paso a paso sin pagar nada.</p>
 <button class="btn" onclick="abrir()">Ver tutorial</button>
 </div>
 </div>
@@ -40,12 +45,30 @@ body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5}
 <div id="modal" class="modal">
 <div class="modal-content">
 <span class="cerrar" onclick="cerrar()">&times;</span>
-<h2>Como hacer tu página web en 5 min</h2>
-<p><b>Paso 1:</b> Crear cuenta en GitHub.</p>
-<p><b>Paso 2:</b> Crear repositorio con tu nombre.</p>
-<p><b>Paso 3:</b> Subir tu archivo index.html</p>
-<p>¡Ya lo hiciste, socio! 🔥</p>
-<button class="btn" onclick="cerrar()">Cerrar</button>
+<h2>Como hacer tu propia página web</h2>
+
+<div class="tabs">
+<button class="tab activo" onclick="ver('pc')">💻 En computadora</button>
+<button class="tab" onclick="ver('cel')">📱 En teléfono</button>
+</div>
+
+<div id="pc" class="contenido activo">
+<h3>💻 En computadora:</h3>
+<p><b>1.</b> Entra a github.com y crea cuenta.</p>
+<p><b>2.</b> Crea repositorio: tu-nombre.github.io</p>
+<p><b>3.</b> Sube tu archivo index.html</p>
+<p><b>4.</b> Activa Pages en Settings.</p>
+</div>
+
+<div id="cel" class="contenido">
+<h3>📱 En teléfono:</h3>
+<p><b>1.</b> Descarga la app de GitHub en Play Store.</p>
+<p><b>2.</b> Crea cuenta y repositorio igual: tu-nombre.github.io</p>
+<p><b>3.</b> Dale en Add file > Create new file y pega el código.</p>
+<p><b>4.</b> Es más fácil si usas Chrome en modo escritorio.</p>
+</div>
+
+<button class="btn" onclick="cerrar()" style="margin-top:20px">Cerrar</button>
 </div>
 </div>
 
@@ -53,13 +76,17 @@ body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5}
 const buscador = document.getElementById('buscador');
 const cards = document.querySelectorAll('.tutorial');
 buscador.addEventListener('input', () => {
-  let texto = buscador.value.toLowerCase();
-  cards.forEach(c => {
-    c.style.display = c.innerText.toLowerCase().includes(texto) ? 'block' : 'none';
-  });
+  let t = buscador.value.toLowerCase();
+  cards.forEach(c => { c.style.display = c.innerText.toLowerCase().includes(t) ? 'block' : 'none'; });
 });
 function abrir(){ document.getElementById('modal').style.display='block'; }
 function cerrar(){ document.getElementById('modal').style.display='none'; }
+function ver(id){
+  document.querySelectorAll('.contenido').forEach(c=>c.classList.remove('activo'));
+  document.querySelectorAll('.tab').forEach(c=>c.classList.remove('activo'));
+  document.getElementById(id).classList.add('activo');
+  event.target.classList.add('activo');
+}
 </script>
 </body>
 </html>
