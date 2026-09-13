@@ -12,13 +12,15 @@
   .search-box{padding:15px;background:white;text-align:center}
   .search-box input{width:90%;max-width:500px;padding:14px 20px;border-radius:30px;border:2.5px solid #e53935;outline:none}
   .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:white;justify-content:center}
-  .filters button{padding:10px 20px;border-radius:25px;border:2.5px solid #e53935;background:white;font-weight:bold;cursor:pointer}
+  .filters button{padding:10px 20px;border-radius:25px;border:2.5px solid #e53935;background:white;font-weight:bold;cursor:pointer;white-space:nowrap}
   .filters button.active{background:#e53935;color:white}
   .grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:800px;margin:0 auto}
   .card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
   .card img{width:100%;height:200px;object-fit:cover;display:block;background:#ddd}
   .card-content{padding:15px}
-  .btn{display:block;text-align:center;background:#e53935;color:white;padding:12px;border-radius:12px;text-decoration:none;font-weight:bold;margin-top:10px}
+  .card-content h3{margin-bottom:5px}
+  .card-content p{color:#666;font-size:14px;margin-bottom:10px}
+  .btn{display:block;text-align:center;background:#e53935;color:white;padding:12px;border-radius:12px;text-decoration:none;font-weight:bold}
 </style>
 </head>
 <body>
@@ -47,8 +49,8 @@
   </div>
 
   <div class="card" data-cat="comida">
-    <img src="https://img.youtube.com/vi/4z4WCu5T46A/hqdefault.jpg">
-    <div class="card-content"><h3>Hielitos de Oreo caseros</h3><p>Cremosos y sin máquina.</p><a class="btn" href="https://www.youtube.com/watch?v=4z4WCu5T46A" target="_blank">Ver tutorial</a></div>
+    <img src="https://img.youtube.com/vi/jFUp5FNp4IQ/hqdefault.jpg">
+    <div class="card-content"><h3>Hielitos de Oreo caseros</h3><p>Cremosos y sin máquina.</p><a class="btn" href="https://www.youtube.com/watch?v=jFUp5FNp4IQ" target="_blank">Ver tutorial</a></div>
   </div>
 
   <div class="card" data-cat="tecnologia">
@@ -57,8 +59,8 @@
   </div>
 
   <div class="card" data-cat="comida">
-    <img src="https://img.youtube.com/vi/v2I7blU1a3I/hqdefault.jpg">
-    <div class="card-content"><h3>Hotcakes esponjosos perfectos</h3><p>Receta de 3 ingredientes.</p><a class="btn" href="https://www.youtube.com/watch?v=v2I7blU1a3I" target="_blank">Ver tutorial</a></div>
+    <img src="https://img.youtube.com/vi/weoC6ta3Tsk/hqdefault.jpg">
+    <div class="card-content"><h3>Hotcakes esponjosos perfectos</h3><p>Receta de 3 ingredientes.</p><a class="btn" href="https://www.youtube.com/watch?v=weoC6ta3Tsk" target="_blank">Ver tutorial</a></div>
   </div>
 
   <div class="card" data-cat="tecnologia">
