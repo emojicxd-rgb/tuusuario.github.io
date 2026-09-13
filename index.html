@@ -1,94 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TutoTips</title>
 <style>
-  body{background:#232A34;color:white;font-family:Arial;margin:0}
-  header{text-align:center;padding:20px;background:#1A1F27;border-bottom:3px solid #FF6B35}
-  header h1{color:#FF6B35;font-size:38px;margin:0}
-  header h1 span{color:#FFD60A}
- .search-box{padding:15px;background:#1A1F27;display:flex;gap:8px;justify-content:center}
- .search-box input{width:65%;padding:12px 18px;border-radius:30px;border:2px solid #FF6B35;background:#232A34;color:white;outline:none}
- .icon-btn{width:45px;height:45px;border-radius:50%;border:2px solid #FF6B35;background:#232A34;color:white;font-size:18px}
- .filtros{display:flex;gap:10px;overflow-x:auto;padding:12px;background:#1A1F27;white-space:nowrap}
- .filtros::-webkit-scrollbar{display:none}
- .filtros button{padding:10px 16px;border-radius:20px;border:2px solid #FF6B35;background:#232A34;color:white;font-weight:bold}
- .filtros button.activo{background:#FF6B35;color:black}
- .grid{display:grid;grid-template-columns:1fr;gap:15px;padding:15px;max-width:1100px;margin:auto}
-  @media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
-  @media(min-width:900px){.grid{grid-template-columns:1fr 1fr 1fr}}
- .card{background:#2E3744;border-radius:15px;overflow:hidden;border:1px solid #3A4452;position:relative}
- .card img{width:100%;height:170px;object-fit:cover}
- .fav{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.7);border:none;color:white;width:32px;height:32px;border-radius:50%}
- .fav.activo{color:#FF6B35;background:white}
- .card-content{padding:10px}
- .tag{background:#FFD60A;color:black;font-size:9px;padding:3px 8px;border-radius:12px;font-weight:bold}
- .card-content h3{font-size:14px;margin:5px 0 2px 0}
- .card-content p{font-size:11px;color:#9AA5B1;margin:0}
- .actions{display:flex;gap:8px;margin-top:8px}
- .btn{flex:1;text-align:center;background:#FF6B35;color:black;padding:9px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:12px}
- .btn-wa{background:transparent;color:white;border:1.5px solid #FFD60A}
-  footer{text-align:center;padding:25px;background:#1A1F27;border-top:2px solid #FF6B35;color:#7A8695;margin-top:20px}
-  footer span{color:#FF6B35} footer b{color:#FFD60A}
- .oculto{display:none!important}
+body{background:#232A34;color:#fff;font-family:Arial;margin:0}
+header{text-align:center;padding:18px;background:#1A1F27;border-bottom:3px solid #FF6B35}
+header h1{margin:0;color:#FF6B35;font-size:36px}header h1 span{color:#FFD60A}
+.search-box{padding:12px;background:#1A1F27;display:flex;gap:8px;justify-content:center}
+.search-box input{width:70%;padding:12px 18px;border-radius:30px;border:2px solid #FF6B35;background:#232A34;color:#fff;outline:none}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:2px solid #FF6B35;background:#232A34;color:#fff}
+.filtros{display:flex;gap:8px;overflow-x:auto;padding:12px;background:#1A1F27;position:relative;z-index:10}
+.filtros button{flex:0 0 auto;padding:10px 16px;border-radius:20px;border:2px solid #FF6B35;background:#232A34;color:#fff;font-weight:bold}
+.filtros button.activo{background:#FF6B35;color:#000}
+.grid{display:grid;grid-template-columns:1fr;gap:14px;padding:14px;max-width:1100px;margin:auto}
+@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card{background:#2E3744;border-radius:15px;overflow:hidden;border:1px solid #3A4452;position:relative}
+.card img{width:100%;height:165px;object-fit:cover;background:#1A1F27}
+.fav{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,.7);color:#fff}
+.fav.activo{background:#fff;color:#FF6B35}
+.card-content{padding:10px}.tag{background:#FFD60A;color:#000;font-size:9px;padding:3px 8px;border-radius:10px;font-weight:bold}
+.card-content h3{font-size:14px;margin:6px 0 2px}.card-content p{font-size:11px;color:#9AA5B1;margin:0}
+.actions{display:flex;gap:8px;margin-top:8px}.btn{flex:1;text-align:center;background:#FF6B35;color:#000;padding:8px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:12px}.btn-wa{background:transparent;color:#fff;border:1.5px solid #FFD60A}
+.oculto{display:none!important}
+footer{text-align:center;padding:20px;background:#1A1F27;border-top:2px solid #FF6B35;color:#7A8695}
 </style>
 </head>
 <body>
 <header><h1>💡 Tuto<span>Tips</span></h1></header>
-
 <div class="search-box">
-  <input type="text" id="buscador" placeholder="Buscar..." oninput="filtrar()">
-  <button class="icon-btn" onclick="activarVoz()">🎤</button>
-  <button class="icon-btn" onclick="mostrarFavs()">⭐</button>
+<input id="buscador" placeholder="Buscar..." oninput="aplicarFiltros()">
+<button class="icon-btn" onclick="mostrarFavs()">⭐</button>
 </div>
-
-<div class="filtros" id="filtros">
-  <button class="activo" onclick="filtrarCategoria('todos',this)">Todos (70)</button>
-  <button onclick="filtrarCategoria('tecnologia',this)">💻 Tec</button>
-  <button onclick="filtrarCategoria('comida',this)">🍔 Comida</button>
-  <button onclick="filtrarCategoria('hogar',this)">🏠 Hogar</button>
-  <button onclick="filtrarCategoria('escuela',this)">📚 Escuela</button>
-  <button onclick="filtrarCategoria('gaming',this)">🎮 Gaming</button>
-  <button onclick="filtrarCategoria('mascotas',this)">🐾 Mascotas</button>
-  <button onclick="filtrarCategoria('plantas',this)">🌱 Plantas</button>
+<div class="filtros">
+<button class="activo" onclick="filtrarCategoria('todos',this)">Todos (70)</button>
+<button onclick="filtrarCategoria('tecnologia',this)">💻 Tec</button>
+<button onclick="filtrarCategoria('comida',this)">🍔 Comida</button>
+<button onclick="filtrarCategoria('hogar',this)">🏠 Hogar</button>
+<button onclick="filtrarCategoria('escuela',this)">📚 Escuela</button>
+<button onclick="filtrarCategoria('gaming',this)">🎮 Gaming</button>
+<button onclick="filtrarCategoria('mascotas',this)">🐾 Mascotas</button>
+<button onclick="filtrarCategoria('plantas',this)">🌱 Plantas</button>
 </div>
-
 <div class="grid" id="grid">
-<!-- TEC 10 -->
-<div class="card" data-cat="tecnologia" data-id="tec1"><button class="fav" onclick="fav('tec1',this)">♡</button><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Crear página web gratis</h3><p>GitHub</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Web%20gratis%20https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec2"><button class="fav" onclick="fav('tec2',this)">♡</button><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Liberar espacio celular</h3><p>Sin borrar fotos</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Espacio%20https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec3"><button class="fav" onclick="fav('tec3',this)">♡</button><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Música en estados WhatsApp</h3><p>Truco viral</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Estados%20https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec4"><button class="fav" onclick="fav('tec4',this)">♡</button><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Captura larga</h3><p>Chat completo</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Captura%20https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec5"><button class="fav" onclick="fav('tec5',this)">♡</button><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Modo zurdo Android</h3><p>Controles</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Zurdo%20https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec6"><button class="fav" onclick="fav('tec6',this)">♡</button><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Limpiar caché WhatsApp</h3><p>Más rápido</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Cache%20https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec7"><button class="fav" onclick="fav('tec7',this)">♡</button><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Borrar fotos sin perder chats</h3><p>Storage</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Fotos%20https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec8"><button class="fav" onclick="fav('tec8',this)">♡</button><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Borrar registro llamadas</h3><p>WhatsApp</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=JtjYzOexy3M" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Registro%20https://www.youtube.com/watch?v=JtjYzOexy3M" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec9"><button class="fav" onclick="fav('tec9',this)">♡</button><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Celular lento aceléralo</h3><p>3 ajustes</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=dKhcBNtF-cY" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Lento%20https://www.youtube.com/watch?v=dKhcBNtF-cY" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="tecnologia" data-id="tec10"><button class="fav" onclick="fav('tec10',this)">♡</button><img src="https://img.youtube.com/vi/6uIxCvjo0gU/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Grabar pantalla sin apps</h3><p>Android</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=6uIxCvjo0gU" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Grabar%20https://www.youtube.com/watch?v=6uIxCvjo0gU" target="_blank">WA</a></div></div></div>
-<!-- COMIDA 10 -->
-<div class="card" data-cat="comida" data-id="com1"><button class="fav" onclick="fav('com1',this)">♡</button><img src="https://img.youtube.com/vi/A1xoahQGMgk/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Hamburguesa jugosa</h3><p>10 min</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=A1xoahQGMgk" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Hamburguesa%20https://www.youtube.com/watch?v=A1xoahQGMgk" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com2"><button class="fav" onclick="fav('com2',this)">♡</button><img src="https://img.youtube.com/vi/jFUp5FNp4IQ/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Hielitos Oreo</h3><p>Cremosos</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=jFUp5FNp4IQ" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Oreo%20https://www.youtube.com/watch?v=jFUp5FNp4IQ" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com3"><button class="fav" onclick="fav('com3',this)">♡</button><img src="https://img.youtube.com/vi/weoC6ta3Tsk/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Hotcakes esponjosos</h3><p>3 ingredientes</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=weoC6ta3Tsk" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Hotcakes%20https://www.youtube.com/watch?v=weoC6ta3Tsk" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com4"><button class="fav" onclick="fav('com4',this)">♡</button><img src="https://img.youtube.com/vi/Pf0dsxNmAK0/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Crepas sin pegarse</h3><p>Fácil</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=Pf0dsxNmAK0" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Crepas%20https://www.youtube.com/watch?v=Pf0dsxNmAK0" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com5"><button class="fav" onclick="fav('com5',this)">♡</button><img src="https://img.youtube.com/vi/-ZXGih_pBq4/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>One Pot Pasta</h3><p>Una olla</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=-ZXGih_pBq4" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Pasta%20https://www.youtube.com/watch?v=-ZXGih_pBq4" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com6"><button class="fav" onclick="fav('com6',this)">♡</button><img src="https://img.youtube.com/vi/bQ_I0NPDIqc/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Crema calabaza</h3><p>Ligera</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=bQ_I0NPDIqc" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Calabaza%20https://www.youtube.com/watch?v=bQ_I0NPDIqc" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com7"><button class="fav" onclick="fav('com7',this)">♡</button><img src="https://img.youtube.com/vi/BSqcpHW4qxw/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Rompope casero</h3><p>Fácil</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=BSqcpHW4qxw" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Rompope%20https://www.youtube.com/watch?v=BSqcpHW4qxw" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com8"><button class="fav" onclick="fav('com8',this)">♡</button><img src="https://img.youtube.com/vi/Eu-1W4Rt3E0/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Canelones setas</h3><p>Gratinados</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=Eu-1W4Rt3E0" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Canelones%20https://www.youtube.com/watch?v=Eu-1W4Rt3E0" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com9"><button class="fav" onclick="fav('com9',this)">♡</button><img src="https://img.youtube.com/vi/1dn99IfG3VE/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Berenjenas rellenas</h3><p>Micro</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=1dn99IfG3VE" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Berenjenas%20https://www.youtube.com/watch?v=1dn99IfG3VE" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="comida" data-id="com10"><button class="fav" onclick="fav('com10',this)">♡</button><img src="https://img.youtube.com/vi/09R8_2nJtjg/hqdefault.jpg"><div class="card-content"><span class="tag">COMIDA</span><h3>Tamales verdes</h3><p>Masa perfecta</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=09R8_2nJtjg" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tamales%20https://www.youtube.com/watch?v=09R8_2nJtjg" target="_blank">WA</a></div></div></div>
-<!-- HOGAR 10 -->
-<div class="card" data-cat="hogar" data-id="hog1"><button class="fav" onclick="fav('hog1',this)">♡</button><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>Doblar ropa 2 seg</h3><p>Japonés</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Ropa%20https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog2"><button class="fav" onclick="fav('hog2',this)">♡</button><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>Playeras como tienda</h3><p>Perfectas</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Playeras%20https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog3"><button class="fav" onclick="fav('hog3',this)">♡</button><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>Pantalones Kondo</h3><p>Ahorra espacio</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Kondo%20https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog4"><button class="fav" onclick="fav('hog4',this)">♡</button><img src="https://img.youtube.com/vi/4owYlQO9_90/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>Ropa interior</h3><p>Cajones</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=4owYlQO9_90" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Interior%20https://www.youtube.com/watch?v=4owYlQO9_90" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog5"><button class="fav" onclick="fav('hog5',this)">♡</button><img src="https://img.youtube.com/vi/Lpc5_1896ro/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>KonMari orden</h3><p>Método</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=Lpc5_1896ro" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=KonMari%20https://www.youtube.com/watch?v=Lpc5_1896ro" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog6"><button class="fav" onclick="fav('hog6',this)">♡</button><img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>20 ideas doblar</h3><p>Espacio</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Ideas%20https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog7"><button class="fav" onclick="fav('hog7',this)">♡</button><img src="https://img.youtube.com/vi/CevxZvSJLk8/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>Closet pequeño</h3><p>Trucos</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=CevxZvSJLk8" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Closet%20https://www.youtube.com/watch?v=CevxZvSJLk8" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog8"><button class="fav" onclick="fav('hog8',this)">♡</button><img src="https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>Cajas organizar</h3><p>Reutiliza</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=9bZkp7q19f0" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Cajas%20https://www.youtube.com/watch?v=9bZkp7q19f0" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog9"><button class="fav" onclick="fav('hog9',this)">♡</button><img src="https://img.youtube.com/vi/k85mRPqvMbE/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>Error al doblar</h3><p>Evitalo</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=k85mRPqvMbE" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Error%20https://www.youtube.com/watch?v=k85mRPqvMbE" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="hogar" data-id="hog10"><button class="fav" onclick="fav('hog10',this)">♡</button><img src="https://img.youtube.com/vi/JGwWNGJdvx8/hqdefault.jpg"><div class="card-content"><span class="tag">HOGAR</span><h3>Sábanas y cobijas</h3><p>Fácil</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=JGwWNGJdvx8" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Sabanas%20https://www.youtube.com/watch?v=JGwWNGJdvx8" target="_blank">WA</a></div></div></div>
-<!-- ESCUELA 10 -->
-<div class="card" data-cat="escuela" data-id="esc1"><button class="fav" onclick="fav('esc1',this)">♡</button><img src="https://img.youtube.com/vi/kJQP7kiw5Fk/hqdefault.jpg"><div class="card-content"><span class="tag">ESCUELA</span><h3>Resumen perfecto</h3><p>5 pasos</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=kJQP7kiw5Fk" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Resumen%20https://www.youtube.com/watch?v=kJQP7kiw5Fk" target="_blank">WA</a></div></div></div>
-<div class="card" data-cat="escuela" data-id="esc2"><button class="fav" onclick="fav('esc2',this)">♡</button><img src="https://img.youtube.com/vi/RgKAFK5djSk/hqdefault.jpg"><div class="card-content"><span class="tag">ESCUELA</span><h3>Mapas menta
+<!-- 10 TEC -->
+<div class="card" data-cat="tecnologia" data-id="tec1"><button class="fav" onclick="fav('tec1',this)">♡</button><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Crear página web gratis</h3><p>GitHub</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tip" target="_blank">WA</a></div></div></div>
+<div class="card" data-cat="tecnologia" data-id="tec2"><button class="fav" onclick="fav('tec2',this)">♡</button><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Liberar espacio</h3><p>Sin borrar fotos</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tip" target="_blank">WA</a></div></div></div>
+<div class="card" data-cat="tecnologia" data-id="tec3"><button class="fav" onclick="fav('tec3',this)">♡</button><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Estados con música</h3><p>Truco</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tip" target="_blank">WA</a></div></div></div>
+<div class="card" data-cat="tecnologia" data-id="tec4"><button class="fav" onclick="fav('tec4',this)">♡</button><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Captura larga</h3><p>Chat</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tip" target="_blank">WA</a></div></div></div>
+<div class="card" data-cat="tecnologia" data-id="tec5"><button class="fav" onclick="fav('tec5',this)">♡</button><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Modo zurdo</h3><p>Android</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tip" target="_blank">WA</a></div></div></div>
+<div class="card" data-cat="tecnologia" data-id="tec6"><button class="fav" onclick="fav('tec6',this)">♡</button><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Limpiar caché WA</h3><p>Rápido</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tip" target="_blank">WA</a></div></div></div>
+<div class="card" data-cat="tecnologia" data-id="tec7"><button class="fav" onclick="fav('tec7',this)">♡</button><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Borrar fotos sin perder chats</h3><p>Storage</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tip" target="_blank">WA</a></div></div></div>
+<div class="card" data-cat="tecnologia" data-id="tec8"><button class="fav" onclick="fav('tec8',this)">♡</button><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Borrar registro llamadas</h3><p>WA</p><div class="actions"><a class="btn" href="https://www.youtube.com/watch?v=JtjYzOexy3M" target="_blank">Ver</a><a class="btn btn-wa" href="https://wa.me/?text=Tip" target="_blank">WA</a></div></div></div>
+<div class="card" data-cat="tecnologia" data-id="tec9"><button class="fav" onclick="fav('tec9',this)">♡</button><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="card-content"><span class="tag">TECNOLOGÍA</span><h3>Celular lento aceléralo</h3><p>3 ajustes</p><div class="actions"><a class
