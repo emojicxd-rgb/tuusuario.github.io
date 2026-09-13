@@ -9,10 +9,11 @@
   body{background:#f5f5f5}
   header{text-align:center;padding:25px 15px;background:white}
   header h1{color:#e53935;font-size:38px}
-  .search-box{padding:15px;background:white;text-align:center}
-  .search-box input{width:90%;max-width:500px;padding:14px 20px;border-radius:30px;border:2.5px solid #e53935;outline:none}
-  .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:white;justify-content:center}
-  .filters button{padding:10px 20px;border-radius:25px;border:2.5px solid #e53935;background:white;font-weight:bold;cursor:pointer;white-space:nowrap}
+  .search-box{padding:15px;background:white;text-align:center;position:sticky;top:0;z-index:10}
+  .search-box input{width:90%;max-width:500px;padding:14px 20px;border-radius:30px;border:2.5px solid #e53935;outline:none;background:white}
+  .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:white;justify-content:flex-start;position:sticky;top:70px;z-index:9;white-space:nowrap}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{padding:12px 22px;border-radius:25px;border:2.5px solid #e53935;background:white;font-weight:bold;cursor:pointer;flex-shrink:0}
   .filters button.active{background:#e53935;color:white}
   .grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:800px;margin:0 auto}
   .card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
@@ -24,7 +25,7 @@
 <body>
 <header><h1>💡 TutoTips</h1><p>Tutoriales que sí sirven</p></header>
 <div class="search-box"><input type="text" id="buscador" placeholder="Buscar tutorial..." onkeyup="filtrar()"></div>
-<div class="filters">
+<div class="filters" id="barraFiltros">
   <button class="active" onclick="filtrarCat('todos', this)">Todos</button>
   <button onclick="filtrarCat('tecnologia', this)">💻 Tecnología</button>
   <button onclick="filtrarCat('comida', this)">🍔 Comida</button>
@@ -39,5 +40,32 @@
   <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/weoC6ta3Tsk/hqdefault.jpg"><div class="card-content"><h3>Hotcakes esponjosos perfectos</h3><p>3 ingredientes.</p><a class="btn" href="https://www.youtube.com/watch?v=weoC6ta3Tsk" target="_blank">Ver tutorial</a></div></div>
   <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><h3>Doblar tu ropa en 2 segundos</h3><p>Técnica japonesa.</p><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">Ver tutorial</a></div></div>
   <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><h3>Tomar captura larga en el celular</h3><p>De toda la conversación.</p><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">Ver tutorial</a></div></div>
+  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><h3>Activar modo zurdo en tu celular</h3><p>Más fácil para zurdos.</p><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">Ver tutorial</a></div></div>
+  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><h3>Limpiar WhatsApp y liberar gigas</h3><p>Sin borrar chats.</p><a class="btn" href="https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">Ver tutorial</a></div></div>
+  <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="card-content"><h3>Borrar fotos de WhatsApp sin perder chats</h3><p>Truco de almacenamiento.</p><a class="btn" href="https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">Ver tutorial</a></div></div>
+  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="card-content"><h3>Borrar caché de WhatsApp</h3><p>Para que vaya más rápido.</p><a class="btn" href="https://www.youtube.com/watch?v=JtjYzOexy3M" target="_blank">Ver tutorial</a></div></div>
+  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><h3>Doblar playeras como en tiendas</h3><p>Quedan perfectas.</p><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">Ver tutorial</a></div></div>
+  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><h3>Cómo doblar pantalones</h3><p>Método Marie Kondo.</p><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">Ver tutorial</a></div></div>
+  <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/Pf0dsxNmAK0/hqdefault.jpg"><div class="card-content"><h3>Cómo hacer crepas sin que se peguen</h3><p>Receta fácil.</p><a class="btn" href="https://www.youtube.com/watch?v=Pf0dsxNmAK0" target="_blank">Ver tutorial</a></div></div>
+  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="card-content"><h3>Hacer que tu celular vaya más rápido</h3><p>Truco simple.</p><a class="btn" href="https://www.youtube.com/watch?v=dKhcBNtF-cY" target="_blank">Ver tutorial</a></div></div>
 
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi
+</div>
+<script>
+  let catActual='todos';
+  function filtrar(){
+    let texto=document.getElementById('buscador').value.toLowerCase();
+    document.querySelectorAll('.card').forEach(card=>{
+      let coincideTexto = card.innerText.toLowerCase().includes(texto);
+      let coincideCat = catActual==='todos' || card.dataset.cat===catActual;
+      card.style.display = (coincideTexto && coincideCat) ? 'block' : 'none';
+    });
+  }
+  function filtrarCat(cat,btn){
+    catActual=cat;
+    document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    filtrar();
+  }
+</script>
+</body>
+</html>
