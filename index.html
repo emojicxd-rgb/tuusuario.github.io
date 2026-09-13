@@ -8,7 +8,8 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#212A3A;color:#fff}
 header{text-align:center;padding:25px;background:#1A222F;border-bottom:3px solid #00F0FF}
-header h1{font-size:36px} header p{color:#E9ECEF;font-weight:bold;margin-top:5px}
+header h1{font-size:36px}
+header p{color:#E9ECEF;font-weight:bold;margin-top:6px;font-size:16px}
 header p span{color:#00F0FF}
 input[type=radio]{display:none}
 .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:#1A222F;position:sticky;top:0;z-index:10}
@@ -19,7 +20,7 @@ input[type=radio]{display:none}
 .card img{width:100%;height:200px;object-fit:cover;display:block}
 .card-content{padding:15px}
 .tag{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:bold;display:inline-block;margin-bottom:6px}
-.tag-tec{background:#9D4EDD;color:#fff}.tag-comida{background:#00F0FF;color:#000}.tag-hogar{background:#39FF14;color:#000}
+.tag-tec{background:#9D4EDD}.tag-comida{background:#00F0FF;color:#000}.tag-hogar{background:#39FF14;color:#000}
 .btn{display:block;text-align:center;background:#00F0FF;color:#000;padding:12px;border-radius:12px;text-decoration:none;font-weight:bold;margin-top:10px}
 #tecnologia:checked ~ .grid .card:not([data-cat=tecnologia]){display:none}
 #comida:checked ~ .grid .card:not([data-cat=comida]){display:none}
@@ -31,7 +32,7 @@ footer span{color:#00F0FF}
 <body>
 <header>
 <h1>💡 TutoTips</h1>
-<p>desarrollado por <span>Joshua y meta pros</span> 🚀</p>
+<p>🚀desarrollado por <span>Joshua y meta pro</span> 🚀</p>
 </header>
 
 <input type="radio" name="cat" id="todos" checked>
@@ -41,11 +42,4 @@ footer span{color:#00F0FF}
 
 <div class="filters">
 <label for="todos">Todos (30)</label>
-<label for="tecnologia">💻 Tecnología</label>
-<label for="comida">🍔 Comida</label>
-<label for="hogar">🏠 Hogar</label>
-</div>
-
-<div class="grid">
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Crear web gratis</h3><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">Ver</a></div></div>
-<div class="card" data-cat="tecnologia"><img
+<label for="tecnologia">💻 Tecnología</
