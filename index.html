@@ -10,19 +10,19 @@
   header{text-align:center;padding:25px 15px;background:white}
   header h1{color:#e53935;font-size:38px}
   .search-box{padding:15px;background:white;text-align:center;position:sticky;top:0;z-index:10}
-  .search-box input{width:90%;max-width:500px;padding:14px 20px;border-radius:30px;border:2.5px solid #e53935;outline:none;background:white}
-  .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:white;justify-content:flex-start;position:sticky;top:70px;z-index:9;white-space:nowrap}
-  .filters::-webkit-scrollbar{display:none}
+  .search-box input{width:90%;max-width:500px;padding:14px 20px;border-radius:30px;border:2.5px solid #e53935;outline:none}
+  .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:white;position:sticky;top:70px;z-index:9;white-space:nowrap}
   .filters button{padding:12px 22px;border-radius:25px;border:2.5px solid #e53935;background:white;font-weight:bold;cursor:pointer;flex-shrink:0}
   .filters button.active{background:#e53935;color:white}
-  .grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:800px;margin:0 auto;width:100%;flex:1}
+  .grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:900px;margin:0 auto;width:100%;flex:1}
+  @media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
   .card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-  .card img{width:100%;height:200px;object-fit:cover;display:block;background:#ddd}
+  .card img{width:100%;height:200px;object-fit:cover;background:#ddd}
   .card-content{padding:15px}
-  .tag{display:inline-block;font-size:11px;padding:4px 10px;border-radius:20px;margin-bottom:6px;font-weight:bold;color:white}
+  .tag{font-size:11px;padding:4px 10px;border-radius:20px;margin-bottom:6px;font-weight:bold;color:white;display:inline-block}
   .tag-tec{background:#1976d2}.tag-comida{background:#ff6f00}.tag-hogar{background:#2e7d32}
   .btn{display:block;text-align:center;background:#e53935;color:white;padding:12px;border-radius:12px;text-decoration:none;font-weight:bold;margin-top:10px}
-  footer{text-align:center;padding:40px 20px 30px;background:white;margin-top:20px;border-top:2px solid #eee;font-weight:bold;color:#555;letter-spacing:0.5px}
+  footer{text-align:center;padding:40px 20px;background:white;margin-top:20px;border-top:2px solid #eee;font-weight:bold;color:#555}
   footer span{color:#e53935}
 </style>
 </head>
@@ -30,33 +30,52 @@
 <header><h1>💡 TutoTips</h1><p>Tutoriales que sí sirven</p></header>
 <div class="search-box"><input type="text" id="buscador" placeholder="Buscar tutorial..." onkeyup="filtrar()"></div>
 <div class="filters">
-  <button class="active" onclick="filtrarCat('todos', this)">Todos</button>
-  <button onclick="filtrarCat('tecnologia', this)">💻 Tecnología</button>
-  <button onclick="filtrarCat('comida', this)">🍔 Comida</button>
-  <button onclick="filtrarCat('hogar', this)">🏠 Hogar</button>
+  <button class="active" onclick="filtrarCat('todos', this)">Todos (30)</button>
+  <button onclick="filtrarCat('tecnologia', this)">💻 Tecnología (10)</button>
+  <button onclick="filtrarCat('comida', this)">🍔 Comida (10)</button>
+  <button onclick="filtrarCat('hogar', this)">🏠 Hogar (10)</button>
 </div>
 <div class="grid" id="grid">
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Como hacer tu propia página web</h3><p>GitHub Pages gratis.</p><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Liberar espacio en tu celular</h3><p>Sin borrar fotos.</p><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Música en estados de WhatsApp</h3><p>El truco que todos usan.</p><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Tomar captura larga en el celular</h3><p>De toda la conversación.</p><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Activar modo zurdo en tu celular</h3><p>Más fácil para zurdos.</p><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Limpiar WhatsApp y liberar gigas</h3><p>Sin borrar chats.</p><a class="btn" href="https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar fotos de WhatsApp sin perder chats</h3><p>Truco de almacenamiento.</p><a class="btn" href="https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar caché de WhatsApp</h3><p>Para que vaya más rápido.</p><a class="btn" href="https://www.youtube.com/watch?v=JtjYzOexy3M" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Hacer que tu celular vaya más rápido</h3><p>Truco simple.</p><a class="btn" href="https://www.youtube.com/watch?v=dKhcBNtF-cY" target="_blank">Ver tutorial</a></div></div>
 
-  <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/A1xoahQGMgk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hamburguesa casera jugosa</h3><p>En 10 minutos.</p><a class="btn" href="https://www.youtube.com/watch?v=A1xoahQGMgk" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/jFUp5FNp4IQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hielitos de Oreo caseros</h3><p>Cremosos y sin máquina.</p><a class="btn" href="https://www.youtube.com/watch?v=jFUp5FNp4IQ" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/weoC6ta3Tsk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hotcakes esponjosos perfectos</h3><p>3 ingredientes.</p><a class="btn" href="https://www.youtube.com/watch?v=weoC6ta3Tsk" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/Pf0dsxNmAK0/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Cómo hacer crepas sin que se peguen</h3><p>Receta fácil.</p><a class="btn" href="https://www.youtube.com/watch?v=Pf0dsxNmAK0" target="_blank">Ver tutorial</a></div></div>
+<!-- TECNOLOGIA 10 -->
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Crear tu página web gratis</h3><p>Con GitHub Pages.</p><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Liberar espacio del celular</h3><p>Sin borrar fotos.</p><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Poner música en estados de WhatsApp</h3><p>Truco viral.</p><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Captura de pantalla larga</h3><p>Toda la conversación.</p><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Modo zurdo en Android</h3><p>Para zurdos.</p><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Limpiar caché de WhatsApp</h3><p>Que vaya más rápido.</p><a class="btn" href="https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar fotos de WhatsApp sin perder chats</h3><p>Administrar almacenamiento.</p><a class="btn" href="https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar registro de llamadas WhatsApp</h3><p>Truco escondido.</p><a class="btn" href="https://www.youtube.com/watch?v=JtjYzOexy3M" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Celular lento: como acelerarlo</h3><p>3 ajustes.</p><a class="btn" href="https://www.youtube.com/watch?v=dKhcBNtF-cY" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/6uIxCvjo0gU/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Como grabar pantalla en Android</h3><p>Sin apps.</p><a class="btn" href="https://www.youtube.com/watch?v=6uIxCvjo0gU" target="_blank">Ver tutorial</a></div></div>
 
-  <div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar tu ropa en 2 segundos</h3><p>Técnica japonesa.</p><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar playeras como en tiendas</h3><p>Quedan perfectas.</p><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Cómo doblar pantalones</h3><p>Método Marie Kondo.</p><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">Ver tutorial</a></div></div>
+<!-- COMIDA 10 -->
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/A1xoahQGMgk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hamburguesa casera jugosa</h3><p>En 10 minutos.</p><a class="btn" href="https://www.youtube.com/watch?v=A1xoahQGMgk" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/jFUp5FNp4IQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hielitos de Oreo</h3><p>Cremosos.</p><a class="btn" href="https://www.youtube.com/watch?v=jFUp5FNp4IQ" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/weoC6ta3Tsk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hotcakes esponjosos</h3><p>3 ingredientes.</p><a class="btn" href="https://www.youtube.com/watch?v=weoC6ta3Tsk" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/Pf0dsxNmAK0/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crepas sin que se peguen</h3><p>Receta fácil.</p><a class="btn" href="https://www.youtube.com/watch?v=Pf0dsxNmAK0" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/-ZXGih_pBq4/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>One Pot Pasta en una olla</h3><p>Cena rápida.</p><a class="btn" href="https://www.youtube.com/watch?v=-ZXGih_pBq4" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/bQ_I0NPDIqc/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crema de calabaza y zanahoria</h3><p>Ligera y rica.</p><a class="btn" href="https://www.youtube.com/watch?v=bQ_I0NPDIqc" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/BSqcpHW4qxw/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Rompope casero navideño</h3><p>Receta fácil.</p><a class="btn" href="https://www.youtube.com/watch?v=BSqcpHW4qxw" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/Eu-1W4Rt3E0/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Canelones de setas y castañas</h3><p>Para sorprender.</p><a class="btn" href="https://www.youtube.com/watch?v=Eu-1W4Rt3E0" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/1dn99IfG3VE/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Berenjenas rellenas al micro</h3><p>En 10 min.</p><a class="btn" href="https://www.youtube.com/watch?v=1dn99IfG3VE" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/BSqcpHW4qxw/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Tamales verdes y rojos</h3><p>Masa perfecta.</p><a class="btn" href="https://www.youtube.com/watch?v=BSqcpHW4qxw" target="_blank">Ver tutorial</a></div></div>
+
+<!-- HOGAR 10 -->
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar ropa en 2 segundos</h3><p>Técnica japonesa.</p><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar playeras como tienda</h3><p>Quedan perfectas.</p><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar pantalones Marie Kondo</h3><p>Ahorra espacio.</p><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/4owYlQO9_90/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar ropa interior</h3><p>Guía para cajones.</p><a class="btn" href="https://www.youtube.com/watch?v=4owYlQO9_90" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/Lpc5_1896ro/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Ordenar con Marie Kondo</h3><p>Método KonMari.</p><a class="btn" href="https://www.youtube.com/watch?v=Lpc5_1896ro" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>20 ideas para doblar ropa</h3><p>Ahorra espacio.</p><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Organizar closet pequeño</h3><p>Con poco espacio.</p><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Cajas para organizar ropa</h3><p>Reutilizando cajas.</p><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/4owYlQO9_90/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Error al doblar ropa</h3><p>Que te quita espacio.</p><a class="btn" href="https://www.youtube.com/watch?v=4owYlQO9_90" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/Lpc5_1896ro/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar sábanas y cobijas</h3><p>Método fácil.</p><a class="btn" href="https://www.youtube.com/watch?v=Lpc5_1896ro" target="_blank">Ver tutorial</a></div></div>
+
 </div>
 
-<footer>desarrollado por <span>Joshua y meta pros</span> 🚀</footer>
+<footer>desarrollado por <span>Joshua y meta pros*</span> 🚀</footer>
 
 <script>
   let catActual='todos';
@@ -73,6 +92,7 @@
     document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     filtrar();
+    window.scrollTo({top:0,behavior:'smooth'});
   }
 </script>
 </body>
