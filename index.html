@@ -17,7 +17,7 @@ header{text-align:center;padding:22px 10px}
 #msg{grid-column:1/-1;text-align:center;padding:40px;display:none;opacity:.7}
 footer{text-align:center;padding:30px;opacity:.6}
 </style></head><body>
-<header><h1>🌟 TutoTips</h1><p>Tips rapidos</p></header>
+<header><h1>💡 TutoTips</h1><p>Tips rapidos</p></header>
 <div class="filters">
 <button class="active" onclick="filtrar('todos',this)">Todos</button>
 <button onclick="filtrar('tecnologia',this)">Tecnologia</button>
@@ -84,7 +84,7 @@ footer{text-align:center;padding:30px;opacity:.6}
 <div class="card" data-cat="plantas" data-id="7iT6C7W6m3s"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/7iT6C7W6m3s/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Eliminar pulgon natural</h3><a class="btn" href="https://www.youtube.com/watch?v=7iT6C7W6m3s" target="_blank">Ver</a></div></div>
 <div class="card" data-cat="plantas" data-id="Xx5aJ2g8e1Q"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/Xx5aJ2g8e1Q/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Suculentas cuidados</h3><a class="btn" href="https://www.youtube.com/watch?v=Xx5aJ2g8e1Q" target="_blank">Ver</a></div></div>
 </div>
-<footer>© 2026 TutoTips</footer>
+<footer>© joshua y meta pros 🚀</footer>
 <script>
 let favs=JSON.parse(localStorage.getItem('favs')||'[]');
 function toggleFav(el){let card=el.closest('.card');let id=card.dataset.id;let i=favs.indexOf(id);if(i>-1){favs.splice(i,1);card.classList.remove('is-fav');el.textContent='🤍';el.classList.remove('active')}else{favs.push(id);card.classList.add('is-fav');el.textContent='❤️';el.classList.add('active')}localStorage.setItem('favs',JSON.stringify(favs));updateFavCount()}
