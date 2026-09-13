@@ -1,66 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TutoTips</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TutoTips - 70 Tips</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#11151c;color:#fff;padding:15px}
-h1{font-size:28px;margin:15px 0} h1 span{color:#ff6b35}
-.cats{display:flex;gap:8px;overflow:auto;padding-bottom:10px}
-.cats button{background:#1f2937;border:none;color:#fff;padding:8px 16px;border-radius:20px;white-space:nowrap}
-.cats button.active{background:#ff6b35}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+body{background:#0f141e;color:#fff;padding:12px}
+h1{font-size:30px;margin:10px 0} h1 span{color:#ff6b35}
+.cats{display:flex;gap:8px;overflow:auto;padding:10px 0;position:sticky;top:0;background:#0f141e;z-index:10}
+.cats button{background:#1f2937;border:none;color:#fff;padding:9px 14px;border-radius:22px;font-weight:700;white-space:nowrap;font-size:12px}
+.cats button.active{background:#ff6b35;color:#000}
+.count{color:#8ea0b8;font-size:13px;margin:8px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:700px){.grid{grid-template-columns:1fr 1fr 1fr}}
-.card{background:#1e293b;border-radius:16px;overflow:hidden}
-.thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:55px}
+.card{background:#1c2535;border-radius:16px;overflow:hidden;border:1px solid #2a364e}
+.card img{width:100%;height:130px;object-fit:cover}
 .info{padding:10px}
-.cat{background:#ffeb3b;color:#000;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px}
-.info h3{font-size:14px;margin:8px 0 2px} .info p{font-size:11px;color:#94a3b8}
-.btns{display:flex;gap:6px;margin-top:10px}
-.btn{flex:1;text-align:center;padding:8px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px}
-.orange{background:#ff6b35;color:#000} .outline{border:1.5px solid #ffeb3b;color:#fff}
+.cat{background:#ffeb3b;color:#000;font-size:8px;font-weight:900;padding:3px 8px;border-radius:20px}
+.info h3{font-size:12px;margin:6px 0 2px;line-height:1.2;height:30px;overflow:hidden}
+.info p{font-size:10px;color:#8ea0b8}
+.btns{display:flex;gap:6px;margin-top:8px}
+.btn{flex:1;text-align:center;padding:7px;border-radius:8px;text-decoration:none;font-weight:800;font-size:11px}
+.orange{background:#ff6b35;color:#000} .outline{border:1px solid #3a4a68;color:#fff}
 </style>
 </head>
 <body>
 <h1>Tuto<span>Tips</span></h1>
 <div class="cats">
-<button class="active" onclick="filter('todo',this)">Todo</button>
-<button onclick="filter('hogar',this)">Hogar</button>
-<button onclick="filter('gaming',this)">Gaming</button>
-<button onclick="filter('mascotas',this)">Mascotas</button>
-<button onclick="filter('plantas',this)">Plantas</button>
-<button onclick="filter('ropa',this)">Ropa</button>
+<button class="active" onclick="filterCat('todo',this)">Todo (70)</button>
+<button onclick="filterCat('hogar',this)">Hogar</button>
+<button onclick="filterCat('gaming',this)">Gaming</button>
+<button onclick="filterCat('mascotas',this)">Mascotas</button>
+<button onclick="filterCat('plantas',this)">Plantas</button>
+<button onclick="filterCat('ropa',this)">Ropa</button>
+<button onclick="filterCat('cocina',this)">Cocina</button>
+<button onclick="filterCat('escuela',this)">Escuela</button>
 </div>
-<div class="grid" id="grid">
-
-<div class="card" data-cat="hogar"><div class="thumb" style="background:linear-gradient(135deg,#ff6b35,#f7931e)">🏠</div><div class="info"><span class="cat">HOGAR</span><h3>Doblar ropa en 2 seg</h3><p>Truco viral</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=como+doblar+ropa+rapido" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="hogar"><div class="thumb" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)">🧹</div><div class="info"><span class="cat">HOGAR</span><h3>Limpiar baño sin cloro</h3><p>Sin esfuerzo</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=como+limpiar+baño+sin+cloro" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="gaming"><div class="thumb" style="background:linear-gradient(135deg,#a855f7,#ec4899)">🎮</div><div class="info"><span class="cat">GAMING</span><h3>Mejorar puntería Free Fire</h3><p>Pro tips</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=como+mejorar+punteria+free+fire" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="gaming"><div class="thumb" style="background:linear-gradient(135deg,#22c55e,#16a34a)">🎯</div><div class="info"><span class="cat">GAMING</span><h3>Configurar sensibilidad</h3><p>Sin lag</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=configurar+sensibilidad+free+fire" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="mascotas"><div class="thumb" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">🐶</div><div class="info"><span class="cat">MASCOTAS</span><h3>Adiestrar perro en casa</h3><p>Fácil</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=como+adiestrar+perro+cachorro" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="mascotas"><div class="thumb" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">🐱</div><div class="info"><span class="cat">MASCOTAS</span><h3>Que no arañe muebles</h3><p>Gatos</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=como+evitar+que+gato+arañe+muebles" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="plantas"><div class="thumb" style="background:linear-gradient(135deg,#2d5a27,#8bc34a)">🌵</div><div class="info"><span class="cat">PLANTAS</span><h3>Revivir suculentas secas</h3><p>Paso a paso</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=como+revivir+suculentas+secas" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="plantas"><div class="thumb" style="background:linear-gradient(135deg,#365314,#a3e635)">🌱</div><div class="info"><span class="cat">PLANTAS</span><h3>Cuidados básicos cactus</h3><p>Principiantes</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=cuidados+basicos+cactus" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="ropa"><div class="thumb" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">👕</div><div class="info"><span class="cat">ROPA</span><h3>Quitar manchas de ropa</h3><p>Blanca</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=como+quitar+manchas+ropa+blanca" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-<div class="card" data-cat="ropa"><div class="thumb" style="background:linear-gradient(135deg,#111827,#4b5563)">👖</div><div class="info"><span class="cat">ROPA</span><h3>Doblar jeans para viaje</h3><p>Sin arrugas</p><div class="btns"><a class="btn orange" href="https://www.youtube.com/results?search_query=como+doblar+jeans+para+viaje" target="_blank">Buscar</a><a class="btn outline" href="https://wa.me/?text=Mira+este+tip" target="_blank">WA</a></div></div></div>
-
-</div>
+<div class="count" id="count"></div>
+<div class="grid" id="grid"></div>
 <script>
-function filter(cat,btn){
-document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-document.querySelectorAll('.card').forEach(c=>{c.style.display=(cat=='todo'||c.dataset.cat==cat)?'block':'none'})
-}
-</script>
-</body>
-</html>
+const tips=[
+ {cat:'hogar',t:'Doblar ropa en 2 seg',d:'Truco viral',img:'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400',q:'como+doblar+ropa+rapido'},
+ {cat:'hogar',t:'Limpiar baño sin cloro',d:'Sin esfuerzo',img:'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400',q:'como+limpiar+baño+sin+cloro'},
+ {cat:'hogar',t:'Quitar sarro regadera',d:'Vinagre',img:'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=400',q:'como+quitar+sarro+regadera'},
+ {cat:'hogar',t:'Organizar closet',d:'Más espacio',img:'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=400',q:'organizar+closet+pequeño'},
+ {cat:'hogar',t:'Limpiar microondas 3min',d:'Con limón',img:'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=400',q:'como+limpiar+microondas'},
+ {cat:'hogar',t:'Quitar olor refri',d:'Bicarbonato',img:'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=400',q:'quitar+mal+olor+refrigerador'},
+ {cat:'hogar',t:'Vidrios sin marcas',d:'Cristalino',img:'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400',q:'limpiar+vidrios+sin+marcas'},
+ {cat:'hogar',t:'Doblar sábanas elástico',d:'Hotel',img:'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400',q:'como+doblar+sabanas+con+elastico'},
+ {cat:'hogar',t:'Desinfectar esponjas',d:'Sin bacterias',img:'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400',q:'desinfectar+esponjas'},
+ {cat:'hogar',t:'Organizar cables',d:'Sin enredos',img:'https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?w=400',q:'organizar+cables'},
+ {cat:'gaming',t:'Puntería Free Fire',d:'Pro',img:'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400',q:'mejorar+punteria+free+fire'},
+ {cat:'gaming',t:'Sensibilidad sin lag',d:'2024',img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',q:'sensibilidad+free+fire+sin+lag'},
+ {cat:'gaming',t:'Diamantes gratis legal',d:'Truco',img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',q:'diamantes+free+fire+gratis'},
+ {cat:'gaming',t:'Subir a heroico',d:'Rango',img:'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',q:'subir+rango+free+fire+rapido'},
+ {cat:'gaming',t:'HUD 4 dedos',d:'Pro',img:'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400',q:'mejor
