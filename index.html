@@ -40,29 +40,4 @@
   <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><h3>Doblar tu ropa en 2 segundos</h3><p>Técnica japonesa.</p><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">Ver tutorial</a></div></div>
   <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><h3>Tomar captura larga en el celular</h3><p>De toda la conversación.</p><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">Ver tutorial</a></div></div>
 
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><h3>Activar modo zurdo en tu celular</h3><p>Más fácil para zurdos.</p><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/c0t1JrcVmjQ/hqdefault.jpg"><div class="card-content"><h3>Limpiar WhatsApp y liberar gigas</h3><p>Sin borrar chats.</p><a class="btn" href="https://www.youtube.com/watch?v=c0t1JrcVmjQ" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="card-content"><h3>Hacer arroz perfecto</h3><p>Que no se bata.</p><a class="btn" href="https://www.youtube.com/watch?v=dKhcBNtF-cY" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/swNgjX0xHC8/hqdefault.jpg"><div class="card-content"><h3>Máquina que dobla tu ropa sola</h3><p>El invento del futuro.</p><a class="btn" href="https://www.youtube.com/watch?v=swNgjX0xHC8" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><h3>Doblar playeras como en tiendas</h3><p>Quedan perfectas.</p><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><h3>Cómo doblar pantalones</h3><p>Método Marie Kondo.</p><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/Pf0dsxNmAK0/hqdefault.jpg"><div class="card-content"><h3>Cómo hacer crepas sin que se peguen</h3><p>Receta fácil.</p><a class="btn" href="https://www.youtube.com/watch?v=Pf0dsxNmAK0" target="_blank">Ver tutorial</a></div></div>
-  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/_BVrLYY4jZg/hqdefault.jpg"><div class="card-content"><h3>Planchar y perfumar en 5 segundos</h3><p>Con FoldiMate.</p><a class="btn" href="https://www.youtube.com/watch?v=_BVrLYY4jZg" target="_blank">Ver tutorial</a></div></div>
-
-</div>
-<script>
-  let catActual='todos';
-  function filtrar(){
-    let texto=document.getElementById('buscador').value.toLowerCase();
-    document.querySelectorAll('.card').forEach(card=>{
-      card.style.display=(card.innerText.toLowerCase().includes(texto)&&(catActual==='todos'||card.dataset.cat===catActual))?'block':'none';
-    });
-  }
-  function filtrarCat(cat,btn){
-    catActual=cat;
-    document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');filtrar();
-  }
-</script>
-</body>
-</html>
+  <div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi
