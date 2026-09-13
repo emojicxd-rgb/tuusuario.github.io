@@ -6,38 +6,35 @@
 <title>TutoTips</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#212A3A;color:#FFFFFF;display:flex;flex-direction:column;min-height:100vh}
+body{background:#212A3A;color:#fff;min-height:100vh}
 header{text-align:center;padding:25px 15px;background:#1A222F;border-bottom:3px solid #00F0FF}
-header h1{font-size:38px} header p{color:#E9ECEF}
 .search-box{padding:15px;background:#1A222F;text-align:center;position:sticky;top:0;z-index:10}
-.search-box input{width:90%;max-width:500px;padding:14px 20px;border-radius:30px;border:2.5px solid #00F0FF;outline:none;background:#212A3A;color:#fff}
+.search-box input{width:90%;max-width:500px;padding:14px 20px;border-radius:30px;border:2.5px solid #00F0FF;background:#212A3A;color:#fff;outline:none}
 .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:#1A222F;position:sticky;top:70px;z-index:9}
 .filters button{padding:12px 22px;border-radius:25px;border:2px solid #00F0FF;background:#212A3A;color:#fff;font-weight:bold;cursor:pointer;flex-shrink:0}
 .filters button.active{background:#00F0FF;color:#000}
-.grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:800px;margin:0 auto;width:100%;flex:1}
+.grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:800px;margin:0 auto}
 .card{background:#2A3447;border-radius:15px;overflow:hidden;border:1px solid #2D3748}
 .card img{width:100%;height:200px;object-fit:cover;display:block}
-.card-content{padding:15px} .card-content p{color:#E9ECEF;font-size:14px}
-.tag{display:inline-block;font-size:11px;padding:4px 10px;border-radius:20px;margin-bottom:6px;font-weight:bold}
-.tag-tec{background:#9D4EDD;color:#fff}.tag-comida{background:#00F0FF;color:#000}.tag-hogar{background:#39FF14;color:#000}
+.card-content{padding:15px} .tag{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:bold;display:inline-block;margin-bottom:6px}
+.tag-tec{background:#9D4EDD}.tag-comida{background:#00F0FF;color:#000}.tag-hogar{background:#39FF14;color:#000}
 .btn{display:block;text-align:center;background:#00F0FF;color:#000;padding:12px;border-radius:12px;text-decoration:none;font-weight:bold;margin-top:10px}
-footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #00F0FF;font-weight:bold}
-footer span{color:#00F0FF}
+footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #00F0FF;margin-top:20px}
 </style>
 </head>
 <body>
 <header><h1>💡 TutoTips</h1><p>Tutoriales que sí sirven</p></header>
 <div class="search-box"><input type="text" id="buscador" placeholder="Buscar tutorial..."></div>
 <div class="filters" id="filtros">
-<button class="active" data-filter="todos">Todos (30)</button>
-<button data-filter="tecnologia">💻 Tecnología</button>
-<button data-filter="comida">🍔 Comida</button>
-<button data-filter="hogar">🏠 Hogar</button>
+<button class="active" data-filter="todos" onclick="cambiarCat(this)">Todos (30)</button>
+<button data-filter="tecnologia" onclick="cambiarCat(this)">💻 Tecnología</button>
+<button data-filter="comida" onclick="cambiarCat(this)">🍔 Comida</button>
+<button data-filter="hogar" onclick="cambiarCat(this)">🏠 Hogar</button>
 </div>
 <div class="grid" id="grid">
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Crear página web gratis</h3><p>GitHub Pages.</p><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">Ver tutorial</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Liberar espacio sin borrar fotos</h3><p>Truco.</p><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">Ver tutorial</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Música en estados WhatsApp</h3><p>Con letra.</p><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">Ver tutorial</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Captura larga de chat</h3><p>Completa.</p><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">Ver tutorial</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Modo zurdo en Android</h3><p>Cómodo.</p><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">Ver tutorial</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Limpiar WhatsApp</h3><p>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Crear página web gratis</h3><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Liberar espacio sin borrar fotos</h3><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Música en estados WhatsApp</h3><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Captura larga de chat</h3><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">Ver tutorial</a></div></div>
+<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Modo zurdo en Android</h3><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">Ver tutorial</a></div></div>
+<div class="
