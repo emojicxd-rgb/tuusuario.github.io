@@ -2,56 +2,38 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TutoTips - 70 Tips</title>
+<title>TutoTips 70</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 body{background:#0f141e;color:#fff;padding:12px}
-h1{font-size:30px;margin:10px 0} h1 span{color:#ff6b35}
-.cats{display:flex;gap:8px;overflow:auto;padding:10px 0;position:sticky;top:0;background:#0f141e;z-index:10}
-.cats button{background:#1f2937;border:none;color:#fff;padding:9px 14px;border-radius:22px;font-weight:700;white-space:nowrap;font-size:12px}
+h1{font-size:32px;margin:10px 0}h1 span{color:#ff6b35}
+.cats{display:flex;gap:8px;overflow:auto;padding:10px 0}
+.cats button{background:#1f2937;border:none;color:#fff;padding:10px 18px;border-radius:22px;font-weight:700;white-space:nowrap}
 .cats button.active{background:#ff6b35;color:#000}
-.count{color:#8ea0b8;font-size:13px;margin:8px 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(min-width:700px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
 .card{background:#1c2535;border-radius:16px;overflow:hidden;border:1px solid #2a364e}
-.card img{width:100%;height:130px;object-fit:cover}
+.thumb{height:130px;display:flex;align-items:center;justify-content:center;font-size:50px}
 .info{padding:10px}
-.cat{background:#ffeb3b;color:#000;font-size:8px;font-weight:900;padding:3px 8px;border-radius:20px}
-.info h3{font-size:12px;margin:6px 0 2px;line-height:1.2;height:30px;overflow:hidden}
-.info p{font-size:10px;color:#8ea0b8}
+.tag{background:#ffeb3b;color:#000;font-size:9px;font-weight:900;padding:3px 8px;border-radius:20px}
+.info h3{font-size:13px;margin:6px 0 2px;height:32px;overflow:hidden}
 .btns{display:flex;gap:6px;margin-top:8px}
-.btn{flex:1;text-align:center;padding:7px;border-radius:8px;text-decoration:none;font-weight:800;font-size:11px}
-.orange{background:#ff6b35;color:#000} .outline{border:1px solid #3a4a68;color:#fff}
+.btn{flex:1;text-align:center;padding:8px;border-radius:8px;text-decoration:none;font-weight:800;font-size:12px}
+.o{background:#ff6b35;color:#000}.out{border:1px solid #3a4a68;color:#fff}
 </style>
 </head>
 <body>
 <h1>Tuto<span>Tips</span></h1>
-<div class="cats">
-<button class="active" onclick="filterCat('todo',this)">Todo (70)</button>
-<button onclick="filterCat('hogar',this)">Hogar</button>
-<button onclick="filterCat('gaming',this)">Gaming</button>
-<button onclick="filterCat('mascotas',this)">Mascotas</button>
-<button onclick="filterCat('plantas',this)">Plantas</button>
-<button onclick="filterCat('ropa',this)">Ropa</button>
-<button onclick="filterCat('cocina',this)">Cocina</button>
-<button onclick="filterCat('escuela',this)">Escuela</button>
-</div>
-<div class="count" id="count"></div>
+<div class="cats" id="cats"></div>
 <div class="grid" id="grid"></div>
 <script>
-const tips=[
- {cat:'hogar',t:'Doblar ropa en 2 seg',d:'Truco viral',img:'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400',q:'como+doblar+ropa+rapido'},
- {cat:'hogar',t:'Limpiar baño sin cloro',d:'Sin esfuerzo',img:'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400',q:'como+limpiar+baño+sin+cloro'},
- {cat:'hogar',t:'Quitar sarro regadera',d:'Vinagre',img:'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=400',q:'como+quitar+sarro+regadera'},
- {cat:'hogar',t:'Organizar closet',d:'Más espacio',img:'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=400',q:'organizar+closet+pequeño'},
- {cat:'hogar',t:'Limpiar microondas 3min',d:'Con limón',img:'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=400',q:'como+limpiar+microondas'},
- {cat:'hogar',t:'Quitar olor refri',d:'Bicarbonato',img:'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=400',q:'quitar+mal+olor+refrigerador'},
- {cat:'hogar',t:'Vidrios sin marcas',d:'Cristalino',img:'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400',q:'limpiar+vidrios+sin+marcas'},
- {cat:'hogar',t:'Doblar sábanas elástico',d:'Hotel',img:'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400',q:'como+doblar+sabanas+con+elastico'},
- {cat:'hogar',t:'Desinfectar esponjas',d:'Sin bacterias',img:'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400',q:'desinfectar+esponjas'},
- {cat:'hogar',t:'Organizar cables',d:'Sin enredos',img:'https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?w=400',q:'organizar+cables'},
- {cat:'gaming',t:'Puntería Free Fire',d:'Pro',img:'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400',q:'mejorar+punteria+free+fire'},
- {cat:'gaming',t:'Sensibilidad sin lag',d:'2024',img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',q:'sensibilidad+free+fire+sin+lag'},
- {cat:'gaming',t:'Diamantes gratis legal',d:'Truco',img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',q:'diamantes+free+fire+gratis'},
- {cat:'gaming',t:'Subir a heroico',d:'Rango',img:'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',q:'subir+rango+free+fire+rapido'},
- {cat:'gaming',t:'HUD 4 dedos',d:'Pro',img:'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400',q:'mejor
+const cats=[{id:'hogar',name:'Hogar',emoji:'🏠',color:'#f97316'},{id:'gaming',name:'Gaming',emoji:'🎮',color:'#a855f7'},{id:'mascotas',name:'Mascotas',emoji:'🐶',color:'#f59e0b'},{id:'plantas',name:'Plantas',emoji:'🌵',color:'#22c55e'},{id:'ropa',name:'Ropa',emoji:'👕',color:'#ec4899'},{id:'cocina',name:'Cocina',emoji:'🍳',color:'#eab308'},{id:'escuela',name:'Escuela',emoji:'📚',color:'#06b6d4'}];
+const base={hogar:["Doblar ropa en 2 seg","Limpiar baño sin cloro","Quitar sarro regadera","Organizar closet","Limpiar microondas","Quitar olor refri","Vidrios sin marcas","Doblar sabanas","Desinfectar esponjas","Organizar cables"],gaming:["Punteria Free Fire","Sensibilidad sin lag","Diamantes gratis","Subir a heroico","HUD 4 dedos","Quitar lag gama baja","Armas meta","Jugar en PC","Recuperar cuenta","Crear sala PVP"],mascotas:["Adiestrar cachorro","Gato no arañe","Quitar pulgas","No muerda todo","Baño sin miedo","Arenero sin olor","Cortar uñas","Perro solo casa","Comida casera","Use rascador"],plantas:["Revivir suculentas","Cuidados cactus","No pudrir al regar","Reproducir por hoja","Tierra ideal","Quitar cochinilla","Sol directo o no","Macetas drenaje","Abono natural","Decorar con suculentas"],ropa:["Manchas ropa blanca","Doblar jeans viaje","Quitar chicle","Ropa no encoja","Olor humedad","Planchar sin plancha","Organizar cajones","Pelos mascota","Tenis blancos","Doblar playeras"],cocina:["Arroz no se pegue","Pelar papas rapido","Huevo sin romperse","Cebolla sin llorar","Descongelar carne","Salsa no pique","Tortillas no se rompan","Frijoles sin gases","Limpiar estufa","Cilantro fresco"],escuela:["Exponer sin nervios","Tarea rapido 30min","Memorizar examen","Letra bonita","Organizar mochila","Apuntes bonitos","Concentrarse clase","Resumen rapido","No olvidar tarea","Pasar examen"]};
+let all=[];cats.forEach(c=>{base[c.id].forEach(t=>{all.push({cat:c.id,emoji:c.emoji,color:c.color,title:t,query:t.toLowerCase().replace(/ /g,'+')})})});
+const catsDiv=document.getElementById('cats');catsDiv.innerHTML='<button class="active" onclick="filtrar(\'todo\',this)">Todo (70)</button>'+cats.map(c=>`<button onclick="filtrar('${c.id}',this)">${c.name} (10)</button>`).join('');
+const grid=document.getElementById('grid');
+function pintar(l){grid.innerHTML=l.map(x=>`<div class="card"><div class="thumb" style="background:linear-gradient(135deg,${x.color},#1c2535)">${x.emoji}</div><div class="info"><span class="tag">${x.cat.toUpperCase()}</span><h3>${x.title}</h3><div class="btns"><a class="btn o" href="https://www.youtube.com/results?search_query=${x.query}" target="_blank">Buscar</a><a class="btn out" href="https://wa.me/?text=${encodeURIComponent(x.title)}" target="_blank">WA</a></div></div></div>`).join('');}
+pintar(all);
+function filtrar(cat,btn){document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(cat==='todo')pintar(all);else pintar(all.filter(a=>a.cat===cat));}
+</script>
+</body>
+</html>
