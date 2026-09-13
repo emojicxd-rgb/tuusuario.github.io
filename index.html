@@ -7,11 +7,9 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#212A3A;color:#fff}
 header{text-align:center;padding:22px;background:#1A222F;border-bottom:3px solid #00F0FF}
-header p span{color:#00F0FF}
-input[type=radio]{display:none}
 .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:#1A222F;position:sticky;top:0;z-index:10}
-.filters label{padding:12px 22px;border-radius:25px;border:2px solid #00F0FF;background:#212A3A;color:#fff;font-weight:bold;cursor:pointer;white-space:nowrap}
-#todos:checked ~ .filters label[for=todos], #tecnologia:checked ~ .filters label[for=tecnologia], #comida:checked ~ .filters label[for=comida], #hogar:checked ~ .filters label[for=hogar], #manualidades:checked ~ .filters label[for=manualidades], #escuela:checked ~ .filters label[for=escuela], #plantas:checked ~ .filters label[for=plantas], #favoritos:checked ~ .filters label[for=favoritos]{background:#00F0FF;color:#000}
+.filters button{padding:12px 22px;border-radius:25px;border:2px solid #00F0FF;background:#212A3A;color:#fff;font-weight:bold;cursor:pointer;white-space:nowrap}
+.filters button.active{background:#00F0FF;color:#000}
 .grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:800px;margin:0 auto}
 .card{background:#2A3447;border-radius:15px;overflow:hidden;border:1px solid #2D3748;position:relative}
 .card img{width:100%;height:200px;object-fit:cover;display:block}
@@ -21,49 +19,34 @@ input[type=radio]{display:none}
 .btn{display:block;text-align:center;background:#FF0000;color:#fff;padding:13px;border-radius:12px;text-decoration:none;font-weight:bold;margin-top:10px}
 .fav{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:2px solid #fff;z-index:2}
 .fav.active{background:#FF0000;border-color:#FF0000}
-#tecnologia:checked ~ .grid .card:not([data-cat=tecnologia]){display:none}
-#comida:checked ~ .grid .card:not([data-cat=comida]){display:none}
-#hogar:checked ~ .grid .card:not([data-cat=hogar]){display:none}
-#manualidades:checked ~ .grid .card:not([data-cat=manualidades]){display:none}
-#escuela:checked ~ .grid .card:not([data-cat=escuela]){display:none}
-#plantas:checked ~ .grid .card:not([data-cat=plantas]){display:none}
-#favoritos:checked ~ .grid .card:not(.is-fav){display:none}
 #msg{grid-column:1/-1;text-align:center;padding:40px;display:none;color:#00F0FF}
-footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #00F0FF;margin-top:20px} footer span{color:#00F0FF}
+footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #00F0FF;margin-top:20px}
 </style>
 </head>
 <body>
 <header><h1>💡 TutoTips</h1><p>🚀 desarrollado por <span>Joshua y meta pro</span> 🚀</p></header>
-<input type="radio" name="cat" id="todos" checked>
-<input type="radio" name="cat" id="tecnologia">
-<input type="radio" name="cat" id="comida">
-<input type="radio" name="cat" id="hogar">
-<input type="radio" name="cat" id="manualidades">
-<input type="radio" name="cat" id="escuela">
-<input type="radio" name="cat" id="plantas">
-<input type="radio" name="cat" id="favoritos">
 <div class="filters">
-<label for="todos">Todos (60)</label>
-<label for="tecnologia">💻 Tecnología (10)</label>
-<label for="comida">🍔 Comida (10)</label>
-<label for="hogar">🏠 Hogar (10)</label>
-<label for="manualidades">🎨 Manualidades (10)</label>
-<label for="escuela">📚 Escuela (10)</label>
-<label for="plantas">🌿 Plantas (10)</label>
-<label for="favoritos">⭐ Favoritos (<span id="countFav">0</span>)</label>
+<button class="active" onclick="filtrar('todos',this)">Todos (60)</button>
+<button onclick="filtrar('tecnologia',this)">💻 Tecnología (10)</button>
+<button onclick="filtrar('comida',this)">🍔 Comida (10)</button>
+<button onclick="filtrar('hogar',this)">🏠 Hogar (10)</button>
+<button onclick="filtrar('manualidades',this)">🎨 Manualidades (10)</button>
+<button onclick="filtrar('escuela',this)">📚 Escuela (10)</button>
+<button onclick="filtrar('plantas',this)">🌿 Plantas (10)</button>
+<button onclick="filtrar('favoritos',this)">⭐ Favoritos (<span id="countFav">0</span>)</button>
 </div>
 <div class="grid" id="grid">
-<div id="msg">Aún no tienes favoritos<br><br
+<div id="msg">Aún no tienes favoritos<br><br>¡Dale ❤️ a los tips que te gusten!</div>
 <div class="card" data-cat="tecnologia" data-id="c4eQJGWdyhc"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/c4eQJGWdyhc/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Google Files Go - liberar espacio</h3><a class="btn" href="https://www.youtube.com/watch?v=c4eQJGWdyhc" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="tecnologia" data-id="dZtYWTs8hjY"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/dZtYWTs8hjY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>WhatsApp - liberar almacenamiento</h3><a class="btn" href="https://www.youtube.com/watch?v=dZtYWTs8hjY" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="tecnologia" data-id="ZHUeSOMjDZ4"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/ZHUeSOMjDZ4/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Vaciar papelera de WhatsApp</h3><a class="btn" href="https://www.youtube.com/watch?v=ZHUeSOMjDZ4" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="tecnologia" data-id="lAnqp7VJ-c0"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/lAnqp7VJ-c0/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Limpiar archivos grandes</h3><a class="btn" href="https://www.youtube.com/watch?v=lAnqp7VJ-c0" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="tecnologia" data-id="pPLgUtqlKyw"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/pPLgUtqlKyw/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Eliminar archivos basura</h3><a class="btn" href="https://www.youtube.com/watch?v=pPLgUtqlKyw" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="tecnologia" data-id="-K01PCzDInw"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/-K01PCzDInw/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Administrador almacenamiento</h3><a class="btn" href="https://www.youtube.com/watch?v=-K01PCzDInw" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia" data-id="Im7QKBKy1MY"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/Im7QKBKy1MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>5 trucos liberar espacio Android</h3><a class="btn" href="https://www.youtube.com/watch?v=Im7QKBKy1MY" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="Im7QKBKy1MY"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/Im7QKBKy1MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>5 trucos liberar espacio</h3><a class="btn" href="https://www.youtube.com/watch?v=Im7QKBKy1MY" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="tecnologia" data-id="I95okDBvR-g"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/I95okDBvR-g/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Liberar espacio Gmail</h3><a class="btn" href="https://www.youtube.com/watch?v=I95okDBvR-g" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="tecnologia" data-id="YmVeHTGXBtQ"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/YmVeHTGXBtQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Papelera de WhatsApp</h3><a class="btn" href="https://www.youtube.com/watch?v=YmVeHTGXBtQ" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia" data-id="dW7BDrJbzz0"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/dW7BDrJbzz0/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Publica tu web gratis con GitHub</h3><a class="btn" href="https://www.youtube.com/watch?v=dW7BDrJbzz0" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="dW7BDrJbzz0"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/dW7BDrJbzz0/hqdefault.jpg"><div class="card-content"><span class="tag tag-tecnologia">TECNOLOGIA</span><h3>Publica web gratis GitHub</h3><a class="btn" href="https://www.youtube.com/watch?v=dW7BDrJbzz0" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="comida" data-id="A1xoahQGMgk"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/A1xoahQGMgk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hamburguesa jugosa casera</h3><a class="btn" href="https://www.youtube.com/watch?v=A1xoahQGMgk" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="comida" data-id="jFUp5FNp4IQ"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/jFUp5FNp4IQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hielitos Oreo</h3><a class="btn" href="https://www.youtube.com/watch?v=jFUp5FNp4IQ" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="comida" data-id="CJX49NFaEhA"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/CJX49NFaEhA/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Receta base de crepas</h3><a class="btn" href="https://www.youtube.com/watch?v=CJX49NFaEhA" target="_blank">▶ Ver en YouTube</a></div></div>
@@ -74,7 +57,7 @@ footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #0
 <div class="card" data-cat="comida" data-id="6a34lxCokpw"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/6a34lxCokpw/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crepas queso y hongos</h3><a class="btn" href="https://www.youtube.com/watch?v=6a34lxCokpw" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="comida" data-id="uckrGMkDv48"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/uckrGMkDv48/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crepas pollo y espinaca</h3><a class="btn" href="https://www.youtube.com/watch?v=uckrGMkDv48" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="comida" data-id="fwT_IP2u7tc"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/fwT_IP2u7tc/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crepas suizas</h3><a class="btn" href="https://www.youtube.com/watch?v=fwT_IP2u7tc" target="_blank">▶ Ver en YouTube</a></div></div>
-  <div class="card" data-cat="hogar" data-id="qnflv_vBl2Y"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar polo en 2 segundos</h3><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="qnflv_vBl2Y"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar polo en 2 segundos</h3><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="hogar" data-id="5bRkNNPuWRE"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar playera como en tienda</h3><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="hogar" data-id="iEIh4zYOrXc"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar pantalones</h3><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="hogar" data-id="U2O2lSc1ZiA"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/U2O2lSc1ZiA/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Quitar sarro azulejos</h3><a class="btn" href="https://www.youtube.com/watch?v=U2O2lSc1ZiA" target="_blank">▶ Ver en YouTube</a></div></div>
@@ -104,23 +87,4 @@ footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #0
 <div class="card" data-cat="escuela" data-id="dQw4w9WgXcQ"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-escuela">ESCUELA</span><h3>Exponer sin nervios</h3><a class="btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="escuela" data-id="JGwWNGJdvx8"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/JGwWNGJdvx8/hqdefault.jpg"><div class="card-content"><span class="tag tag-escuela">ESCUELA</span><h3>Método Cornell notas</h3><a class="btn" href="https://www.youtube.com/watch?v=JGwWNGJdvx8" target="_blank">▶ Ver en YouTube</a></div></div>
 <div class="card" data-cat="escuela" data-id="k8mP5z2t4nE"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/k8mP5z2t4nE/hqdefault.jpg"><div class="card-content"><span class="tag tag-escuela">ESCUELA</span><h3>Separadores bonitos</h3><a class="btn" href="https://www.youtube.com/watch?v=k8mP5z2t4nE" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="v2AC41no-p8"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/v2AC41no-p8/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Revivir planta seca</h3><a class="btn" href="https://www.youtube.com/watch?v=v2AC41no-p8" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="u1aavzE5w3o"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/u1aavzE5w3o/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>5 plantas imposibles de matar</h3><a class="btn" href="https://www.youtube.com/watch?v=u1aavzE5w3o" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="S2q1t3u4v5w"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/S2q1t3u4v5w/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Esquejes de potos en agua</h3><a class="btn" href="https://www.youtube.com/watch?v=S2q1t3u4v5w" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="J2v1g0h9Q8w"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/J2v1g0h9Q8w/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Abono con cáscara plátano</h3><a class="btn" href="https://www.youtube.com/watch?v=J2v1g0h9Q8w" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="m9Zx0y8w7vB"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/m9Zx0y8w7vB/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Cuidar suculentas</h3><a class="btn" href="https://www.youtube.com/watch?v=m9Zx0y8w7vB" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="Q4w3e2r1t0y"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/Q4w3e2r1t0y/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Eliminar pulgones natural</h3><a class="btn" href="https://www.youtube.com/watch?v=Q4w3e2r1t0y" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="Z9x8c7v6b5n"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/Z9x8c7v6b5n/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Huerto con botellas</h3><a class="btn" href="https://www.youtube.com/watch?v=Z9x8c7v6b5n" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="L1k2j3h4g5f"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/L1k2j3h4g5f/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Riego por goteo casero</h3><a class="btn" href="https://www.youtube.com/watch?v=L1k2j3h4g5f" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="N0m1b2v3c4x"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/N0m1b2v3c4x/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Germinar semillas limón</h3><a class="btn" href="https://www.youtube.com/watch?v=N0m1b2v3c4x" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="plantas" data-id="BwQfFv7xZvE"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/BwQfFv7xZvE/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Trasplantar sin que muera</h3><a class="btn" href="https://www.youtube.com/watch?v=BwQfFv7xZvE" target="_blank">▶ Ver en YouTube</a></div></div>
-</div>
-<footer>© 2026 TutoTips | <span>🚀Joshua y meta pros🚀</span></footer>
-<script>
-let favs = JSON.parse(localStorage.getItem('favs')||'[]');
-function toggleFav(el){let card=el.closest('.card');let id=card.dataset.id;let idx=favs.indexOf(id);if(idx>-1){favs.splice(idx,1);card.classList.remove('is-fav');el.textContent='🤍';el.classList.remove('active')}else{favs.push(id);card.classList.add('is-fav');el.textContent='❤️';el.classList.add('active')}localStorage.setItem('favs',JSON.stringify(favs));updateUI();}
-function updateUI(){document.getElementById('countFav').textContent=favs.length;document.querySelectorAll('.card').forEach(c=>{if(favs.includes(c.dataset.id)){c.classList.add('is-fav');c.querySelector('.fav').textContent='❤️';c.querySelector('.fav').classList.add('active')}});let any=false;if(document.getElementById('favoritos').checked){document.querySelectorAll('.card').forEach(c=>{if(c.classList.contains('is-fav')) any=true});document.getElementById('msg').style.display=any?'none':'block';}else{document.getElementById('msg').style.display='none'}}
-document.querySelectorAll('input[name=cat]').forEach(r=>r.addEventListener('change',updateUI));updateUI();
-</script>
-</body>
-                                                                                                                                                                                                                                                                                                   </html>
+<div class="card" data-cat="plantas" data-id="v2AC41no-p8"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/v2AC41no-p8/hqdefault.jpg"><div class="card-content"><span class="tag tag-plantas">PLANTAS</span><h3>Revivir planta seca</h3><a class="btn" href="https://www.youtube.com/watch
