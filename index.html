@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TutoTips</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#212A3A;color:#fff}
-header{text-align:center;padding:25px;background:#1A222F;border-bottom:3px solid #00F0FF}
-header h1{font-size:36px} header p{color:#E9ECEF;font-weight:bold;margin-top:6px}
+header{text-align:center;padding:22px;background:#1A222F;border-bottom:3px solid #00F0FF}
+header h1{font-size:34px}
+header p{color:#E9ECEF;font-weight:bold;margin-top:6px}
 header p span{color:#00F0FF}
-input[type=radio]{display:none}
 .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:#1A222F;position:sticky;top:0;z-index:10}
-.filters label{padding:12px 22px;border-radius:25px;border:2px solid #00F0FF;background:#212A3A;color:#fff;font-weight:bold;cursor:pointer;white-space:nowrap}
-#todos:checked ~ .filters label[for=todos], #tecnologia:checked ~ .filters label[for=tecnologia], #comida:checked ~ .filters label[for=comida], #hogar:checked ~ .filters label[for=hogar]{background:#00F0FF;color:#000}
+.filters button{padding:12px 22px;border-radius:25px;border:2px solid #00F0FF;background:#212A3A;color:#fff;font-weight:bold;cursor:pointer;white-space:nowrap}
+.filters button.active{background:#00F0FF;color:#000}
 .grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:800px;margin:0 auto}
 .card{background:#2A3447;border-radius:15px;overflow:hidden;border:1px solid #2D3748}
-.video-box{position:relative;width:100%;height:200px;cursor:pointer;background:#000}
-.video-box img{width:100%;height:100%;object-fit:cover}
-.play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#00F0FF;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:#000;font-weight:bold}
-.card-content{padding:15px}
-.tag{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:bold;display:inline-block;margin-bottom:6px}
+.video-box{position:relative;width:100%;height:210px;cursor:pointer;background:#000}
+.video-box img{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#00F0FF;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#000;font-size:28px;font-weight:bold}
+.card-content{padding:12px}
+.tag{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:bold;display:inline-block;margin-bottom:5px}
 .tag-tec{background:#9D4EDD}.tag-comida{background:#00F0FF;color:#000}.tag-hogar{background:#39FF14;color:#000}
-#tecnologia:checked ~ .grid .card:not([data-cat=tecnologia]){display:none}
-#comida:checked ~ .grid .card:not([data-cat=comida]){display:none}
-#hogar:checked ~ .grid .card:not([data-cat=hogar]){display:none}
-footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #00F0FF;margin-top:20px;font-weight:bold} footer span{color:#00F0FF}
-iframe{width:100%;height:200px;border:0}
+iframe{width:100%;height:210px;border:0}
+footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #00F0FF;margin-top:20px} footer span{color:#00F0FF}
 </style>
 </head>
 <body>
 <header>
 <h1>💡 TutoTips</h1>
-<p>desarrollado por <span>Joshua y meta pro</span> 🚀</p>
+<p>🚀 desarrollado por <span>Joshua y meta pro</span> 🚀</p>
 </header>
 
-<input type="radio" name="cat" id="todos" checked>
-<input type="radio" name="cat" id="tecnologia">
-<input type="radio" name="cat" id="comida">
-<input type="radio" name="cat" id="hogar">
-
 <div class="filters">
-<label for="todos">Todos (30)</label>
-<label for="tecnologia">💻 Tecnología</label>
-<label for="comida">🍔 Comida</label>
-<label for="hogar">🏠 Hogar</label>
+<button class="active" onclick="filtrar('todos',this)">Todos (30)</button>
+<button onclick="filtrar('tecnologia',this)">💻 Tecnología</button>
+<button onclick="filtrar('comida',this)">🍔 Comida</button>
+<button onclick="filtrar('hogar',this)">🏠 Hogar</button>
 </div>
 
-<div class="grid">
-<!-- TECNOLOGIA 10 -->
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'K2VdIB0a2MY')"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Crear web gratis con GitHub</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'bLfBMcOMbzQ')"><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Liberar espacio sin borrar fotos</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'oAL8r2o5sXI')"><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Poner música en estados WA</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'EbHRCCsar2E')"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Captura larga de chat</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'kEtTk9F61uc')"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Modo zurdo en Android</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'rfWEVO4xvqA')"><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Limpiar WhatsApp rápido</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'1Nh72WYWYV0')"><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar fotos de WhatsApp</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'JtjYzOexy3M')"><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar caché WhatsApp</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'dKhcBNtF-cY')"><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>3 ajustes si tu cel va lento</h3></div></div>
-<div class="card" data-cat="tecnologia"><div class="video-box" onclick="play(this,'6uIxCvjo0gU')"><img src="https://img.youtube.com/vi/6uIxCvjo0gU/hqdefault.jpg"><div class="play-icon">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Grabar pantalla
+<div class="grid" id="grid">
+<!-- 10 TEC -->
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'K2VdIB0a2MY')"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Publica tu web gratis con GitHub</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'bLfBMcOMbzQ')"><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Liberar espacio sin borrar nada</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'oAL8r2o5sXI')"><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Música en estados WhatsApp</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'EbHRCCsar2E')"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Captura larga de chat</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'kEtTk9F61uc')"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Activar modo zurdo</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'rfWEVO4xvqA')"><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Limpiar WhatsApp</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'1Nh72WYWYV0')"><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar fotos de WA sin perderlas</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'JtjYzOexy3M')"><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar caché de WhatsApp</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'dKhcBNtF-cY')"><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Si tu cel va lento haz esto</h3></div></div>
+<div class="card" data-cat="tecnologia"><div class="video-box" onclick="ver(this,'6uIxCvjo0gU')"><img src="https://img.youtube.com/vi/6uIxCvjo0gU/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Grabar pantalla</h3></div></div>
+
+<!-- 10 COMIDA -->
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'A1xoahQGMgk')"><img src="https://img.youtube.com/vi/A1xoahQGMgk/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hamburguesa jugosa</h3></div></div>
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'jFUp5FNp4IQ')"><img src="https://img.youtube.com/vi/jFUp5FNp4IQ/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hielitos de Oreo</h3></div></div>
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'weoC6ta3Tsk')"><img src="https://img.youtube.com/vi/weoC6ta3Tsk/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hotcakes esponjosos</h3></div></div>
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'Pf0dsxNmAK0')"><img src="https://img.youtube.com/vi/Pf0dsxNmAK0/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crepas sin pegarse</h3></div></div>
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'09R8_2nJtjg')"><img src="https://img.youtube.com/vi/09R8_2nJtjg/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Tamales verdes</h3></div></div>
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'-ZXGih_pBq4')"><img src="https://img.youtube.com/vi/-ZXGih_pBq4/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Pasta en una olla</h3></div></div>
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'bQ_I0NPDIqc')"><img src="https://img.youtube.com/vi/bQ_I0NPDIqc/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crema de calabaza</h3></div></div>
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'BSqcpHW4qxw')"><img src="https://img.youtube.com/vi/BSqcpHW4qxw/hqdefault.jpg"><div class="play">▶</div></div><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Rompope casero</h3></div></div>
+<div class="card" data-cat="comida"><div class="video-box" onclick="ver(this,'1dn99IfG3VE')"><img src="https://img.youtube.com
