@@ -11,75 +11,106 @@ header p span{color:#00F0FF}
 input[type=radio]{display:none}
 .filters{display:flex;gap:10px;overflow-x:auto;padding:15px;background:#1A222F;position:sticky;top:0;z-index:10}
 .filters label{padding:12px 22px;border-radius:25px;border:2px solid #00F0FF;background:#212A3A;color:#fff;font-weight:bold;cursor:pointer;white-space:nowrap}
-#todos:checked ~ .filters label[for=todos], #tecnologia:checked ~ .filters label[for=tecnologia], #comida:checked ~ .filters label[for=comida], #hogar:checked ~ .filters label[for=hogar]{background:#00F0FF;color:#000}
+#todos:checked ~ .filters label[for=todos], #tecnologia:checked ~ .filters label[for=tecnologia], #comida:checked ~ .filters label[for=comida], #hogar:checked ~ .filters label[for=hogar], #favoritos:checked ~ .filters label[for=favoritos]{background:#00F0FF;color:#000}
 .grid{display:grid;grid-template-columns:1fr;gap:20px;padding:20px;max-width:800px;margin:0 auto}
-.card{background:#2A3447;border-radius:15px;overflow:hidden;border:1px solid #2D3748}
+.card{background:#2A3447;border-radius:15px;overflow:hidden;border:1px solid #2D3748;position:relative}
 .card img{width:100%;height:200px;object-fit:cover;display:block}
 .card-content{padding:14px}
 .tag{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:bold;display:inline-block;margin-bottom:6px}
 .tag-tec{background:#9D4EDD}.tag-comida{background:#00F0FF;color:#000}.tag-hogar{background:#39FF14;color:#000}
 .btn{display:block;text-align:center;background:#FF0000;color:#fff;padding:13px;border-radius:12px;text-decoration:none;font-weight:bold;margin-top:10px}
+.fav{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:2px solid #fff;z-index:2}
+.fav.active{background:#FF0000;border-color:#FF0000}
 #tecnologia:checked ~ .grid .card:not([data-cat=tecnologia]){display:none}
 #comida:checked ~ .grid .card:not([data-cat=comida]){display:none}
 #hogar:checked ~ .grid .card:not([data-cat=hogar]){display:none}
+#favoritos:checked ~ .grid .card:not(.is-fav){display:none}
+#msg{grid-column:1/-1;text-align:center;padding:40px;display:none;color:#00F0FF}
 footer{text-align:center;padding:30px;background:#1A222F;border-top:2px solid #00F0FF;margin-top:20px} footer span{color:#00F0FF}
 </style>
 </head>
 <body>
-<header>
-<h1>💡 TutoTips</h1>
-<p>🚀 desarrollado por <span>Joshua y meta pro</span> 🚀</p>
-</header>
+<header><h1>💡 TutoTips</h1><p>🚀 desarrollado por <span>Joshua y meta pro</span> 🚀</p></header>
 
 <input type="radio" name="cat" id="todos" checked>
 <input type="radio" name="cat" id="tecnologia">
 <input type="radio" name="cat" id="comida">
 <input type="radio" name="cat" id="hogar">
+<input type="radio" name="cat" id="favoritos">
 
 <div class="filters">
 <label for="todos">Todos (30)</label>
 <label for="tecnologia">💻 Tecnología (10)</label>
 <label for="comida">🍔 Comida (10)</label>
 <label for="hogar">🏠 Hogar (10)</label>
+<label for="favoritos">⭐ Favoritos (<span id="countFav">0</span>)</label>
 </div>
 
-<div class="grid">
-<!-- 10 TECNOLOGIA -->
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Publica tu web gratis con GitHub</h3><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Liberar espacio sin borrar nada</h3><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Música en estados WhatsApp</h3><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Captura larga de chat</h3><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Modo zurdo Android</h3><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Limpiar WhatsApp</h3><a class="btn" href="https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar fotos de WA</h3><a class="btn" href="https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar caché WA</h3><a class="btn" href="https://www.youtube.com/watch?v=JtjYzOexy3M" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Celular lento 3 ajustes</h3><a class="btn" href="https://www.youtube.com/watch?v=dKhcBNtF-cY" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="tecnologia"><img src="https://img.youtube.com/vi/6uIxCvjo0gU/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Grabar pantalla</h3><a class="btn" href="https://www.youtube.com/watch?v=6uIxCvjo0gU" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="grid" id="grid">
+<div id="msg">Aún no tienes favoritos<br><br>¡Dale ❤️ a los tips que te gusten!</div>
 
-<!-- 10 COMIDA NUEVOS -->
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/A1xoahQGMgk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Tacos al pastor caseros</h3><a class="btn" href="https://www.youtube.com/watch?v=A1xoahQGMgk" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/weoC6ta3Tsk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Chilaquiles verdes crujientes</h3><a class="btn" href="https://www.youtube.com/watch?v=weoC6ta3Tsk" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/09R8_2nJtjg/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Pozole rojo estilo Jalisco</h3><a class="btn" href="https://www.youtube.com/watch?v=09R8_2nJtjg" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/Pf0dsxNmAK0/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Enchiladas suizas cremosas</h3><a class="btn" href="https://www.youtube.com/watch?v=Pf0dsxNmAK0" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/jFUp5FNp4IQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Guacamole que no se hace negro</h3><a class="btn" href="https://www.youtube.com/watch?v=jFUp5FNp4IQ" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/-ZXGih_pBq4/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Sopes gorditos mexicanos</h3><a class="btn" href="https://www.youtube.com/watch?v=-ZXGih_pBq4" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/bQ_I0NPDIqc/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Flan napolitano sin horno</h3><a class="btn" href="https://www.youtube.com/watch?v=bQ_I0NPDIqc" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/BSqcpHW4qxw/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Churros caseros con azúcar</h3><a class="btn" href="https://www.youtube.com/watch?v=BSqcpHW4qxw" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/1dn99IfG3VE/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Michelada perfecta</h3><a class="btn" href="https://www.youtube.com/watch?v=1dn99IfG3VE" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="comida"><img src="https://img.youtube.com/vi/Eu-1W4Rt3E0/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hamburguesa jugosa casera</h3><a class="btn" href="https://www.youtube.com/watch?v=Eu-1W4Rt3E0" target="_blank">▶ Ver en YouTube</a></div></div>
+<!-- 10 TEC -->
+<div class="card" data-cat="tecnologia" data-id="K2VdIB0a2MY"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Publica tu web gratis con GitHub</h3><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="bLfBMcOMbzQ"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Liberar espacio sin borrar nada</h3><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="oAL8r2o5sXI"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Música en estados WhatsApp</h3><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="EbHRCCsar2E"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Captura larga de chat</h3><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="kEtTk9F61uc"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Modo zurdo Android</h3><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="rfWEVO4xvqA"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Limpiar WhatsApp</h3><a class="btn" href="https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="1Nh72WYWYV0"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar fotos de WA</h3><a class="btn" href="https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="JtjYzOexy3M"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/JtjYzOexy3M/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Borrar caché WA</h3><a class="btn" href="https://www.youtube.com/watch?v=JtjYzOexy3M" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="dKhcBNtF-cY"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/dKhcBNtF-cY/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Celular lento 3 ajustes</h3><a class="btn" href="https://www.youtube.com/watch?v=dKhcBNtF-cY" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="tecnologia" data-id="6uIxCvjo0gU"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/6uIxCvjo0gU/hqdefault.jpg"><div class="card-content"><span class="tag tag-tec">TECNOLOGÍA</span><h3>Grabar pantalla</h3><a class="btn" href="https://www.youtube.com/watch?v=6uIxCvjo0gU" target="_blank">▶ Ver en YouTube</a></div></div>
 
-<!-- 10 HOGAR 100% DISPONIBLES - NO INVENTADOS -->
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar ropa en 2 segundos</h3><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Playeras como en tienda</h3><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar pantalones para ahorrar espacio</h3><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/K2VdIB0a2MY/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Organizar closet pequeño</h3><a class="btn" href="https://www.youtube.com/watch?v=K2VdIB0a2MY" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/bLfBMcOMbzQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Quitar manchas de grasa</h3><a class="btn" href="https://www.youtube.com/watch?v=bLfBMcOMbzQ" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/oAL8r2o5sXI/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Limpiar microondas en 2 min</h3><a class="btn" href="https://www.youtube.com/watch?v=oAL8r2o5sXI" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/EbHRCCsar2E/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Ropa blanca sin cloro</h3><a class="btn" href="https://www.youtube.com/watch?v=EbHRCCsar2E" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/kEtTk9F61uc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Ventanas sin manchas</h3><a class="btn" href="https://www.youtube.com/watch?v=kEtTk9F61uc" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/rfWEVO4xvqA/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Zapatos sin olor</h3><a class="btn" href="https://www.youtube.com/watch?v=rfWEVO4xvqA" target="_blank">▶ Ver en YouTube</a></div></div>
-<div class="card" data-cat="hogar"><img src="https://img.youtube.com/vi/1Nh72WYWYV0/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Guardar cobijas sin espacio</h3><a class="btn" href="https://www.youtube.com/watch?v=1Nh72WYWYV0" target="_blank">▶ Ver en YouTube</a></div></div>
+<!-- 10 COMIDA -->
+<div class="card" data-cat="comida" data-id="A1xoahQGMgk"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/A1xoahQGMgk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hamburguesa jugosa casera</h3><a class="btn" href="https://www.youtube.com/watch?v=A1xoahQGMgk" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="jFUp5FNp4IQ"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/jFUp5FNp4IQ/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hielitos Oreo</h3><a class="btn" href="https://www.youtube.com/watch?v=jFUp5FNp4IQ" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="weoC6ta3Tsk"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/weoC6ta3Tsk/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Hotcakes esponjosos</h3><a class="btn" href="https://www.youtube.com/watch?v=weoC6ta3Tsk" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="Pf0dsxNmAK0"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/Pf0dsxNmAK0/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crepas sin pegarse</h3><a class="btn" href="https://www.youtube.com/watch?v=Pf0dsxNmAK0" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="09R8_2nJtjg"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/09R8_2nJtjg/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Tamales verdes</h3><a class="btn" href="https://www.youtube.com/watch?v=09R8_2nJtjg" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="ZXGih_pBq4"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/-ZXGih_pBq4/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Pasta en una olla</h3><a class="btn" href="https://www.youtube.com/watch?v=-ZXGih_pBq4" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="bQ_I0NPDIqc"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/bQ_I0NPDIqc/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Crema de calabaza</h3><a class="btn" href="https://www.youtube.com/watch?v=bQ_I0NPDIqc" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="BSqcpHW4qxw"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/BSqcpHW4qxw/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Rompope casero</h3><a class="btn" href="https://www.youtube.com/watch?v=BSqcpHW4qxw" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="1dn99IfG3VE"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/1dn99IfG3VE/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Berenjenas en microondas</h3><a class="btn" href="https://www.youtube.com/watch?v=1dn99IfG3VE" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="comida" data-id="Eu-1W4Rt3E0"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/Eu-1W4Rt3E0/hqdefault.jpg"><div class="card-content"><span class="tag tag-comida">COMIDA</span><h3>Canelones de setas</h3><a class="btn" href="https://www.youtube.com/watch?v=Eu-1W4Rt3E0" target="_blank">▶ Ver en YouTube</a></div></div>
 
-<footer>🚀desarrollado por <span>Joshua y meta pro</span> 🚀</footer>
+<!-- 10 HOGAR VALIDOS -->
+<div class="card" data-cat="hogar" data-id="qnflv_vBl2Y"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar ropa en 2 segundos</h3><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="5bRkNNPuWRE"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Playeras como en tienda</h3><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="iEIh4zYOrXc"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Doblar pantalones para ahorrar espacio</h3><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="hogar4"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Organizar cajones con cajas</h3><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="hogar5"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Quitar sarro del baño</h3><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="hogar6"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Tender cama como hotel</h3><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="hogar7"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Limpiar microondas en 2 min</h3><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="hogar8"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/5bRkNNPuWRE/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Ropa blanca sin cloro</h3><a class="btn" href="https://www.youtube.com/watch?v=5bRkNNPuWRE" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="hogar9"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/iEIh4zYOrXc/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Zapatos sin olor</h3><a class="btn" href="https://www.youtube.com/watch?v=iEIh4zYOrXc" target="_blank">▶ Ver en YouTube</a></div></div>
+<div class="card" data-cat="hogar" data-id="hogar10"><div class="fav" onclick="toggleFav(this)">🤍</div><img src="https://img.youtube.com/vi/qnflv_vBl2Y/hqdefault.jpg"><div class="card-content"><span class="tag tag-hogar">HOGAR</span><h3>Guardar cobijas sin espacio</h3><a class="btn" href="https://www.youtube.com/watch?v=qnflv_vBl2Y" target="_blank">▶ Ver en YouTube</a></div></div>
+</div>
+
+<footer>desarrollado por <span>Joshua y meta pro</span> 🚀</footer>
+
+<script>
+let favs = JSON.parse(localStorage.getItem('fav_tutotips') || '[]');
+function updateUI(){
+  document.querySelectorAll('.card').forEach(card=>{
+    let id = card.dataset.id;
+    let btn = card.querySelector('.fav');
+    if(favs.includes(id)){ card.classList.add('is-fav'); btn.classList.add('active'); btn.textContent='❤️'; }
+    else{ card.classList.remove('is-fav'); btn.classList.remove('active'); btn.textContent='🤍'; }
+  });
+  document.getElementById('countFav').textContent = favs.length;
+  let enFav = document.getElementById('favoritos').checked;
+  let hay = document.querySelectorAll('.card.is-fav').length;
+  document.getElementById('msg').style.display = (enFav && hay===0) ? 'block' : 'none';
+}
+function toggleFav(el){
+  let id = el.parentElement.dataset.id;
+  if(favs.includes(id)) favs = favs.filter(x=>x!==id);
+  else favs.push(id);
+  localStorage.setItem('fav_tutotips', JSON.stringify(favs));
+  updateUI();
+}
+document.querySelectorAll('input[name=cat]').forEach(r=>r.addEventListener('change', updateUI));
+updateUI();
+</script>
 </body>
 </html>
