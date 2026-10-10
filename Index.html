@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta de Cupido</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400&display=swap');
+  body{margin:0;min-height:100vh;background: radial-gradient(circle at top, #ffe6ee 0%, #ffcad4 30%, #f8a8b8 100%); display:flex;align-items:center;justify-content:center; overflow:hidden; font-family:'Poppins',sans-serif;}
+  .container{position:relative; width:100%; max-width:480px; padding:20px; display:flex; flex-direction:column; align-items:center; z-index:2;}
+  .envelope-wrap{cursor:pointer; transition: transform 0.3s; animation: float 3s ease-in-out infinite;}
+  .envelope-wrap:hover{transform:scale(1.05);}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .envelope{width:280px; height:180px; background:#fff; border-radius:12px; box-shadow:0 15px 35px rgba(0,0,0,0.15); position:relative; display:flex; align-items:center; justify-content:center; border:2px solid #ffb3c1;}
+  .envelope:before{content:'💌'; font-size:64px;}
+  .envelope-text{position:absolute; bottom:-40px; width:100%; text-align:center; color:#a83a4a; font-family:'Dancing Script',cursive; font-size:22px;}
+  .letter{ display:none; width:100%; background: #fffdf7; border-radius:16px; padding:30px 26px; box-shadow:0 20px 50px rgba(0,0,0,0.2); transform: scale(0.8); opacity:0; transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1); position:relative; border:1px solid #ffe0e6; }
+  .letter.show{ display:block; transform:scale(1); opacity:1; }
+  .letter h2{font-family:'Dancing Script',cursive; text-align:center; color:#d6336c; font-size:32px; margin:0 0 10px 0;}
+  .letter p{color:#5a2a35; line-height:1.7; font-size:16px; white-space:pre-wrap;}
+  .close-btn{margin:20px auto 0; display:block; background:#ff4d6d; color:white; border:none; padding:10px 24px; border-radius:20px; cursor:pointer; font-size:14px;}
+  #cupid-scene{position:fixed; inset:0; pointer-events:none; display:none; z-index:5;}
+  #cupid-scene.active{display:block;}
+  .cupid{position:absolute; left:50%; bottom:20px; transform:translateX(-50%); font-size:70px; transition: all 0.5s; animation: cupidBob 0.6s ease-in-out infinite alternate;}
+  @keyframes cupidBob{from{transform:translateX(-50%) translateY(0)} to{transform:translateX(-50%) translateY(-8px)}}
+  .arrow{position:absolute; left:50%; bottom:70px; font-size:28px; transform:translateX(-50%) rotate(-5deg); transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); opacity:0;}
+  .arrow.fly{opacity:1; bottom: 85vh; transform:translateX(-50%) translateX(80px) rotate(25deg); }
+  .heart{position:absolute; bottom:-20px; font-size:20px; animation: rise linear forwards; user-select:none;}
+  @keyframes rise{
+    0%{transform:translateY(0) translateX(0) scale(0.5) rotate(0deg); opacity:0;}
+    10%{opacity:1;}
+    100%{transform:translateY(-110vh) translateX(var(--x)) scale(1.3) rotate(20deg); opacity:0;}
+  }
+  .burst{position:absolute; left:50%; top:20%; font-size:50px; animation: burst 0.8s ease-out forwards;}
+  @keyframes burst{0%{transform:translate(-50%,-50%) scale(0)}50%{transform:translate(-50%,-50%) scale(1.5)}100%{transform:translate(-50%,-50%) scale(1); opacity:0}}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="envelope-wrap" id="envelopeWrap">
+      <div class="envelope"></div>
+      <div class="envelope-text">Toca la carta 💘</div>
+    </div>
+
+    <div class="letter" id="letter">
+      <h2>Para ti</h2>
+      <p id="letterText">Escribe aquí tu texto...
+
+Te amo mucho y quería decirte que...
+
+(Cuando me mandes tu texto real, lo pongo aquí)
+
+Con amor,
+Cupido 💘</p>
+      <button class="close-btn" onclick="reset()">Cerrar 💌</button>
+    </div>
+  </div>
+
+  <div id="cupid-scene">
+    <div class="cupid" id="cupid">👼🏹</div>
+    <div class="arrow" id="arrow">➹</div>
+  </div>
+
+<script>
+  const wrap = document.getElementById('envelopeWrap');
+  const letter = document.getElementById('letter');
+  const scene = document.getElementById('cupid-scene');
+  const arrow = document.getElementById('arrow');
+
+  wrap.addEventListener('click', openLetter);
+
+  function openLetter(){
+    wrap.style.display='none';
+    letter.classList.add('show');
+    scene.classList.add('active');
+    setTimeout(()=>{ arrow.classList.add('fly'); }, 300);
+    setTimeout(()=>{ createBurst(); }, 1000);
+    let count=0;
+    const interval = setInterval(()=>{
+      createHeart();
+      count++;
+      if(count>25) clearInterval(interval);
+    }, 120);
+  }
+  function createHeart(){
+    const h = document.createElement('div');
+    h.className='heart';
+    const emojis = ['❤️','💖','💘','💕','💗','🩷'];
+    h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    h.style.left = (Math.random()*90 + 5) + '%';
+    h.style.setProperty('--x', (Math.random()*200 -100) + 'px');
+    h.style.fontSize = (Math.random()*18 + 14) + 'px';
+    h.style.animationDuration = (Math.random()*2 + 3) + 's';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(), 5000);
+  }
+  function createBurst(){
+    const b = document.createElement('div');
+    b.className='burst';
+    b.textContent='💥💘';
+    scene.appendChild(b);
+    setTimeout(()=>b.remove(), 800);
+  }
+  function reset(){
+    letter.classList.remove('show');
+    scene.classList.remove('active');
+    arrow.classList.remove('fly');
+    wrap.style.display='block';
+  }
+</script>
+</body>
+</html>
